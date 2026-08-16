@@ -1,14 +1,22 @@
 <!DOCTYPE html>
+
 <html lang="zh-TW">
 
 <head>
 
 <meta charset="UTF-8">
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+<meta
+  name="viewport"
+  content="width=device-width,
+           initial-scale=1.0,
+           maximum-scale=1.0,
+           viewport-fit=cover"
+>
 
-<title>TIKOLAM 永生花藝術商品</title>
+<title>
+TIKOLAM 永生花藝術商品
+</title>
 
 
 <style>
@@ -18,23 +26,32 @@ content="width=device-width, initial-scale=1.0">
 }
 
 
+html,
 body {
+
   margin: 0;
+
+  padding: 0;
+
+  min-height: 100%;
 
   font-family:
     Arial,
     "Microsoft JhengHei",
     sans-serif;
 
-  background: #f8f6f3;
+  background:
+    #f7f5f2;
 
-  color: #333;
+  color:
+    #222;
+
 }
 
 
-/* =====================================
-   Header
-===================================== */
+/* =========================================
+   HEADER
+========================================= */
 
 header {
 
@@ -44,7 +61,9 @@ header {
 
   text-align: center;
 
-  padding: 50px 20px;
+  padding:
+    52px 20px;
+
 }
 
 
@@ -52,120 +71,144 @@ header h1 {
 
   margin: 0;
 
-  font-size: 38px;
+  font-size: 40px;
 
-  letter-spacing: 3px;
+  letter-spacing: 4px;
+
 }
 
 
 header p {
 
-  margin-top: 12px;
+  margin:
+    12px 0 0;
 
-  margin-bottom: 0;
+  font-size: 17px;
 
-  font-size: 18px;
+  line-height: 1.5;
+
 }
 
 
-/* =====================================
-   Main
-===================================== */
+/* =========================================
+   MAIN
+========================================= */
 
 main {
 
+  width: 100%;
+
   max-width: 900px;
 
-  margin: auto;
+  margin: 0 auto;
 
-  padding: 40px 20px;
+  padding:
+    32px 18px 120px;
+
 }
 
 
-.card {
-
-  background: white;
-
-  padding: 30px;
-
-  border-radius: 16px;
-
-  box-shadow:
-    0 5px 20px
-    rgba(0,0,0,0.08);
-}
-
-
-.card h2 {
-  margin-top: 0;
-}
-
-
-/* =====================================
-   Chat Button
-===================================== */
-
-#tikolam-ai-btn {
-
-  position: fixed;
-
-  right: 20px;
-
-  bottom: 20px;
-
-  width: 68px;
-
-  height: 68px;
-
-  border-radius: 50%;
-
-  border: none;
-
-  background: #000;
-
-  color: white;
-
-  font-size: 28px;
-
-  cursor: pointer;
-
-  box-shadow:
-    0 5px 20px
-    rgba(0,0,0,0.25);
-
-  z-index: 9999;
-}
-
-
-#tikolam-ai-btn:hover {
-
-  transform: scale(1.05);
-}
-
-
-/* =====================================
-   Chat Window
-===================================== */
-
-#tikolam-chat {
-
-  position: fixed;
-
-  right: 20px;
-
-  bottom: 100px;
-
-  width: 400px;
-
-  height: 650px;
+.main-card {
 
   background: white;
 
   border-radius: 18px;
 
+  padding: 28px;
+
   box-shadow:
-    0 8px 35px
-    rgba(0,0,0,0.25);
+    0 4px 18px
+    rgba(0,0,0,.07);
+
+}
+
+
+.main-card h2 {
+
+  margin-top: 0;
+
+  line-height: 1.4;
+
+}
+
+
+.main-card p {
+
+  line-height: 1.8;
+
+  color: #555;
+
+}
+
+
+/* =========================================
+   FLOAT BUTTON
+========================================= */
+
+#tikolam-ai-btn {
+
+  position: fixed;
+
+  right: 18px;
+
+  bottom:
+    calc(
+      18px +
+      env(safe-area-inset-bottom)
+    );
+
+  width: 72px;
+
+  height: 72px;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background: #000;
+
+  color: white;
+
+  font-size: 30px;
+
+  cursor: pointer;
+
+  box-shadow:
+    0 6px 24px
+    rgba(0,0,0,.28);
+
+  z-index: 9998;
+
+}
+
+
+/* =========================================
+   CHAT
+========================================= */
+
+#tikolam-chat {
+
+  position: fixed;
+
+  right: 18px;
+
+  bottom: 102px;
+
+  width: 420px;
+
+  height:
+    min(
+      700px,
+      calc(100vh - 130px)
+    );
+
+  background: white;
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 10px 40px
+    rgba(0,0,0,.28);
 
   display: none;
 
@@ -174,342 +217,638 @@ main {
   overflow: hidden;
 
   z-index: 9999;
+
 }
 
 
-/* =====================================
-   Chat Header
-===================================== */
+/* =========================================
+   CHAT HEADER
+========================================= */
 
 .tik-header {
+
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    space-between;
+
+  min-height: 68px;
+
+  padding:
+    12px 14px
+    12px 18px;
 
   background: #000;
 
   color: white;
 
-  padding: 16px;
 }
 
 
 .tik-header-title {
 
-  font-size: 18px;
+  font-size: 17px;
 
-  font-weight: bold;
+  font-weight: 700;
+
 }
 
 
 .tik-status {
 
-  margin-top: 5px;
+  margin-top: 4px;
 
   font-size: 12px;
 
-  color: #ddd;
+  color: #ccc;
+
 }
 
 
-/* =====================================
-   Messages
-===================================== */
+#tik-close {
+
+  width: 44px;
+
+  height: 44px;
+
+  flex-shrink: 0;
+
+  border: none;
+
+  border-radius: 50%;
+
+  background:
+    rgba(255,255,255,.12);
+
+  color: white;
+
+  font-size: 24px;
+
+  cursor: pointer;
+
+}
+
+
+/* =========================================
+   MESSAGES
+========================================= */
 
 #tik-messages {
 
   flex: 1;
 
-  padding: 15px;
+  min-height: 0;
 
   overflow-y: auto;
 
-  background: #faf8f6;
+  overscroll-behavior:
+    contain;
+
+  padding:
+    16px;
+
+  background:
+    #f7f5f2;
+
+  -webkit-overflow-scrolling:
+    touch;
+
 }
 
 
 .tik-message {
 
-  margin-bottom: 12px;
+  width: fit-content;
 
   max-width: 88%;
 
-  padding: 11px 14px;
+  margin-bottom:
+    12px;
 
-  border-radius: 15px;
+  padding:
+    12px 15px;
 
-  line-height: 1.6;
+  border-radius:
+    16px;
 
-  font-size: 14px;
+  font-size:
+    15px;
 
-  white-space: pre-wrap;
+  line-height:
+    1.65;
+
+  white-space:
+    pre-wrap;
+
+  overflow-wrap:
+    anywhere;
+
 }
 
 
 .tik-ai-message {
 
+  margin-right: auto;
+
   background: white;
 
-  border: 1px solid #e5e5e5;
+  border:
+    1px solid #e4e4e4;
 
-  margin-right: auto;
 }
 
 
 .tik-user-message {
 
+  margin-left: auto;
+
   background: #000;
 
   color: white;
 
-  margin-left: auto;
 }
 
 
-/* =====================================
-   Product Card
-===================================== */
+/* =========================================
+   PRODUCT CARD
+========================================= */
 
 .tik-product-card {
 
-  background: white;
+  width: 100%;
 
-  border: 1px solid #ddd;
-
-  border-radius: 15px;
+  margin:
+    0 0 16px;
 
   overflow: hidden;
 
-  margin-bottom: 14px;
+  background: white;
+
+  border:
+    1px solid #ddd;
+
+  border-radius: 18px;
 
   box-shadow:
-    0 3px 10px
-    rgba(0,0,0,0.07);
+    0 3px 12px
+    rgba(0,0,0,.07);
+
 }
 
 
 .tik-product-image {
 
+  display: block;
+
   width: 100%;
 
-  height: 180px;
+  height: 230px;
 
   object-fit: cover;
 
-  display: block;
-
   background: #eee;
+
 }
 
 
 .tik-product-body {
 
-  padding: 14px;
+  padding: 16px;
+
 }
 
 
 .tik-product-name {
 
-  font-size: 17px;
+  margin-bottom:
+    8px;
 
-  font-weight: bold;
+  font-size:
+    18px;
 
-  margin-bottom: 8px;
+  line-height:
+    1.45;
+
+  font-weight:
+    700;
+
 }
 
 
 .tik-product-price {
 
-  font-size: 20px;
+  margin-bottom:
+    12px;
 
-  font-weight: bold;
+  font-size:
+    22px;
 
-  margin-bottom: 10px;
+  font-weight:
+    700;
+
 }
 
 
 .tik-product-detail {
 
-  margin-bottom: 5px;
-
-  font-size: 13px;
-
-  line-height: 1.5;
+  margin:
+    6px 0;
 
   color: #555;
+
+  font-size:
+    14px;
+
+  line-height:
+    1.5;
+
 }
 
 
 .tik-product-reason {
 
-  margin-top: 10px;
+  margin-top:
+    12px;
 
-  padding-top: 10px;
+  padding-top:
+    12px;
 
-  border-top: 1px solid #eee;
+  border-top:
+    1px solid #eee;
 
-  font-size: 13px;
+  font-size:
+    14px;
 
-  line-height: 1.5;
+  line-height:
+    1.65;
+
 }
 
 
 .tik-product-link {
 
-  display: block;
+  display: flex;
+
+  align-items: center;
+
+  justify-content:
+    center;
 
   width: 100%;
 
-  margin-top: 12px;
+  min-height: 50px;
 
-  padding: 10px;
+  margin-top:
+    14px;
 
-  border-radius: 8px;
+  padding:
+    12px 16px;
 
-  text-align: center;
-
-  text-decoration: none;
+  border-radius:
+    12px;
 
   background: #000;
 
   color: white;
 
-  font-weight: bold;
+  text-decoration:
+    none;
+
+  font-size:
+    16px;
+
+  font-weight:
+    700;
+
 }
 
 
-/* =====================================
-   Quick buttons
-===================================== */
+/* =========================================
+   QUICK BUTTONS
+========================================= */
 
-.tik-quick-buttons {
+.tik-quick-area {
 
-  padding: 8px 10px;
+  flex-shrink: 0;
+
+  padding:
+    9px 10px;
 
   background: white;
 
   border-top:
     1px solid #eee;
+
+  overflow-x: auto;
+
+  white-space: nowrap;
+
+  -webkit-overflow-scrolling:
+    touch;
+
 }
 
 
-.tik-quick-buttons button {
+.tik-quick-area button {
 
-  margin: 3px;
+  min-height:
+    42px;
 
-  padding: 7px 10px;
+  margin-right:
+    5px;
 
-  border-radius: 18px;
+  padding:
+    8px 13px;
 
   border:
     1px solid #ccc;
 
-  background: white;
+  border-radius:
+    22px;
+
+  background:
+    white;
+
+  font-size:
+    14px;
 
   cursor: pointer;
 
-  font-size: 13px;
 }
 
 
-/* =====================================
-   Input
-===================================== */
+/* =========================================
+   INPUT AREA
+========================================= */
 
 .tik-input-area {
 
+  flex-shrink: 0;
+
   display: flex;
 
-  padding: 10px;
+  align-items:
+    center;
+
+  gap: 8px;
+
+  padding:
+    10px 10px
+    calc(
+      10px +
+      env(safe-area-inset-bottom)
+    );
+
+  background: white;
 
   border-top:
     1px solid #ddd;
 
-  background: white;
 }
 
 
 #tik-input {
 
+  min-width: 0;
+
   flex: 1;
 
-  padding: 11px 13px;
+  height: 48px;
+
+  padding:
+    0 16px;
 
   border:
     1px solid #ccc;
 
-  border-radius: 20px;
+  border-radius:
+    24px;
+
+  font-size:
+    16px;
 
   outline: none;
+
+}
+
+
+#tik-input:focus {
+
+  border-color:
+    #222;
+
 }
 
 
 #tik-send {
 
-  margin-left: 8px;
+  width: 58px;
 
-  padding: 10px 15px;
+  height: 48px;
+
+  flex-shrink: 0;
 
   border: none;
 
-  border-radius: 20px;
+  border-radius:
+    24px;
 
   background: #000;
 
   color: white;
 
+  font-size:
+    15px;
+
+  font-weight:
+    700;
+
   cursor: pointer;
+
 }
 
 
 #tik-send:disabled {
 
-  opacity: 0.5;
+  opacity: .45;
 
-  cursor: not-allowed;
 }
 
 
-/* =====================================
-   Mobile
-===================================== */
+/* =========================================
+   MOBILE
+========================================= */
 
-@media(max-width:600px) {
+@media (
+  max-width: 600px
+) {
+
+  body.chat-open {
+
+    overflow: hidden;
+
+  }
+
 
   header {
 
     padding:
-      38px 15px;
+      38px 16px;
+
   }
 
 
   header h1 {
 
-    font-size: 30px;
+    font-size:
+      31px;
+
   }
 
 
   header p {
 
-    font-size: 16px;
+    font-size:
+      15px;
+
   }
 
 
-  #tikolam-chat {
+  main {
 
-    width:
-      calc(100% - 20px);
+    padding:
+      22px 14px
+      110px;
 
-    height: 78vh;
+  }
 
-    right: 10px;
 
-    bottom: 92px;
+  .main-card {
+
+    padding:
+      22px 18px;
+
   }
 
 
   #tikolam-ai-btn {
 
-    right: 15px;
+    width: 68px;
 
-    bottom: 15px;
+    height: 68px;
+
+    right: 14px;
+
+    bottom:
+      calc(
+        14px +
+        env(
+          safe-area-inset-bottom
+        )
+      );
+
+  }
+
+
+  #tikolam-chat {
+
+    inset: 0;
+
+    width: 100%;
+
+    height:
+      100dvh;
+
+    max-height:
+      none;
+
+    border-radius: 0;
+
+  }
+
+
+  .tik-header {
+
+    padding-top:
+      calc(
+        10px +
+        env(
+          safe-area-inset-top
+        )
+      );
+
+  }
+
+
+  #tik-messages {
+
+    padding:
+      14px;
+
+  }
+
+
+  .tik-message {
+
+    max-width:
+      92%;
+
+    font-size:
+      15px;
+
+  }
+
+
+  .tik-product-image {
+
+    height:
+      min(
+        56vw,
+        280px
+      );
+
+  }
+
+
+  .tik-product-link {
+
+    min-height:
+      54px;
+
+    font-size:
+      17px;
+
+  }
+
+
+  .tik-quick-area button {
+
+    min-height:
+      44px;
+
+  }
+
+
+  #tik-input {
+
+    height:
+      52px;
+
+  }
+
+
+  #tik-send {
+
+    height:
+      52px;
+
+    width:
+      62px;
+
   }
 
 }
@@ -535,21 +874,18 @@ main {
 
 <main>
 
-<div class="card">
+<div class="main-card">
 
 <h2>
 為重要的人，挑一份特別的禮物
 </h2>
 
 <p>
-TIKOLAM 提供永生花、藝術花禮與手工設計商品，
-適合生日、紀念日、情人節、婚禮與各種送禮場合。
+告訴 AI 花禮顧問送禮對象、場合、預算與喜歡的顏色，我們會從目前有庫存的 TIKOLAM 商品中為您挑選。
 </p>
 
 <p>
-點擊右下角 💬，
-告訴 AI 客服送禮對象、場合、預算與喜歡的顏色，
-AI 會從 TIKOLAM 商品中為您挑選。
+點擊右下角 💬 即可開始。
 </p>
 
 </div>
@@ -557,35 +893,55 @@ AI 會從 TIKOLAM 商品中為您挑選。
 </main>
 
 
-<!-- Chat Button -->
-
-<button id="tikolam-ai-btn">
+<button
+  id="tikolam-ai-btn"
+  aria-label="開啟 AI 客服"
+>
 💬
 </button>
 
 
-<!-- Chat Window -->
-
-<div id="tikolam-chat">
+<div
+  id="tikolam-chat"
+  role="dialog"
+  aria-label="TIKOLAM AI 花禮顧問"
+>
 
 
 <div class="tik-header">
+
+<div>
 
 <div class="tik-header-title">
 🌹 TIKOLAM AI 花禮顧問
 </div>
 
-<div class="tik-status">
-● Gemini AI 客服在線
+<div
+  class="tik-status"
+  id="tik-status"
+>
+● AI 客服在線
 </div>
+
+</div>
+
+
+<button
+  id="tik-close"
+  aria-label="關閉客服"
+>
+×
+</button>
 
 </div>
 
 
 <div id="tik-messages">
 
-
-<div class="tik-message tik-ai-message">
+<div
+  class="tik-message
+         tik-ai-message"
+>
 您好 👋
 
 我是 TIKOLAM AI 花禮顧問。
@@ -601,35 +957,54 @@ AI 會從 TIKOLAM 商品中為您挑選。
 
 「送女性朋友生日，預算2000元，喜歡紫色」
 
-我會從目前的 TIKOLAM 商品中幫您挑選。
+我會從目前有庫存的商品中為您挑選。
+</div>
+
 </div>
 
 
-</div>
-
-
-<div class="tik-quick-buttons">
+<div class="tik-quick-area">
 
 <button
-onclick="tikQuick('我要送女性朋友生日禮物，預算2000元，喜歡紫色')">
+onclick="
+tikQuick(
+'我要送女性朋友生日禮物，預算2000元，喜歡紫色'
+)
+"
+>
 💜 紫色生日禮
 </button>
 
 
 <button
-onclick="tikQuick('我要送女朋友紀念日禮物，預算3000元，喜歡紅色')">
+onclick="
+tikQuick(
+'我要送女朋友紀念日禮物，預算3000元，喜歡紅色'
+)
+"
+>
 ❤️ 紀念日
 </button>
 
 
 <button
-onclick="tikQuick('我要找2000元以下的永生花')">
-💰 2000元以下
+onclick="
+tikQuick(
+'我要找2000元以下的永生花'
+)
+"
+>
+💰 2000以下
 </button>
 
 
 <button
-onclick="tikQuick('推薦目前有庫存的熱門商品')">
+onclick="
+tikQuick(
+'推薦目前有庫存的商品'
+)
+"
+>
 🌹 推薦商品
 </button>
 
@@ -639,10 +1014,13 @@ onclick="tikQuick('推薦目前有庫存的熱門商品')">
 <div class="tik-input-area">
 
 <input
-id="tik-input"
-type="text"
-placeholder="例如：送媽媽，預算2500元..."
+  id="tik-input"
+  type="text"
+  maxlength="1000"
+  autocomplete="off"
+  placeholder="例如：送媽媽，預算2500元..."
 >
+
 
 <button id="tik-send">
 送出
@@ -656,89 +1034,128 @@ placeholder="例如：送媽媽，預算2500元..."
 
 <script>
 
-
-// ==========================================
-// Worker
-// ==========================================
+/* =========================================
+   Worker
+========================================= */
 
 const TIKOLAM_AI_API =
-"https://tikolam-ai.hubert893204.workers.dev/";
+  "https://tikolam-ai.hubert893204.workers.dev/";
 
 
-// ==========================================
-// Elements
-// ==========================================
+/* =========================================
+   Elements
+========================================= */
 
 const tikButton =
-document.getElementById(
-  "tikolam-ai-btn"
-);
+  document.getElementById(
+    "tikolam-ai-btn"
+  );
+
 
 const tikChat =
-document.getElementById(
-  "tikolam-chat"
-);
+  document.getElementById(
+    "tikolam-chat"
+  );
+
+
+const tikClose =
+  document.getElementById(
+    "tik-close"
+  );
+
 
 const tikInput =
-document.getElementById(
-  "tik-input"
-);
+  document.getElementById(
+    "tik-input"
+  );
+
 
 const tikSend =
-document.getElementById(
-  "tik-send"
-);
+  document.getElementById(
+    "tik-send"
+  );
+
 
 const tikMessages =
-document.getElementById(
-  "tik-messages"
-);
+  document.getElementById(
+    "tik-messages"
+  );
 
 
-// ==========================================
-// Open / Close
-// ==========================================
+const tikStatus =
+  document.getElementById(
+    "tik-status"
+  );
+
+
+/* =========================================
+   Open
+========================================= */
+
+function tikOpenChat() {
+
+  tikChat.style.display =
+    "flex";
+
+
+  document.body.classList.add(
+    "chat-open"
+  );
+
+
+  setTimeout(
+    () => {
+      tikInput.focus();
+    },
+    100
+  );
+
+}
+
+
+/* =========================================
+   Close
+========================================= */
+
+function tikCloseChat() {
+
+  tikChat.style.display =
+    "none";
+
+
+  document.body.classList.remove(
+    "chat-open"
+  );
+
+}
+
 
 tikButton.onclick =
-function() {
-
-  if (
-    tikChat.style.display ===
-    "flex"
-  ) {
-
-    tikChat.style.display =
-      "none";
-
-  } else {
-
-    tikChat.style.display =
-      "flex";
-
-    tikInput.focus();
-
-  }
-
-};
+  tikOpenChat;
 
 
-// ==========================================
-// Quick question
-// ==========================================
+tikClose.onclick =
+  tikCloseChat;
+
+
+/* =========================================
+   Quick
+========================================= */
 
 function tikQuick(question) {
 
   tikInput.value =
     question;
 
+
   tikSendMessage();
 
 }
 
 
-// ==========================================
-// Normal message
-// ==========================================
+/* =========================================
+   Message
+========================================= */
 
 function tikAddMessage(
   text,
@@ -755,8 +1172,8 @@ function tikAddMessage(
     "tik-message " +
     (
       type === "user"
-      ? "tik-user-message"
-      : "tik-ai-message"
+        ? "tik-user-message"
+        : "tik-ai-message"
     );
 
 
@@ -774,9 +1191,9 @@ function tikAddMessage(
 }
 
 
-// ==========================================
-// Product Card
-// ==========================================
+/* =========================================
+   Product Card
+========================================= */
 
 function tikAddProductCard(
   product
@@ -792,9 +1209,7 @@ function tikAddProductCard(
     "tik-product-card";
 
 
-  // -----------------------------
-  // Image
-  // -----------------------------
+  /* Image */
 
   if (product.image) {
 
@@ -816,6 +1231,10 @@ function tikAddProductCard(
       product.name || "商品";
 
 
+    img.loading =
+      "lazy";
+
+
     img.onerror =
       function() {
 
@@ -832,10 +1251,6 @@ function tikAddProductCard(
   }
 
 
-  // -----------------------------
-  // Body
-  // -----------------------------
-
   const body =
     document.createElement(
       "div"
@@ -846,7 +1261,7 @@ function tikAddProductCard(
     "tik-product-body";
 
 
-  // Name
+  /* Name */
 
   const name =
     document.createElement(
@@ -859,7 +1274,6 @@ function tikAddProductCard(
 
 
   name.textContent =
-    "🌹 " +
     product.name;
 
 
@@ -868,7 +1282,7 @@ function tikAddProductCard(
   );
 
 
-  // Price
+  /* Price */
 
   const price =
     document.createElement(
@@ -884,7 +1298,9 @@ function tikAddProductCard(
     "NT$" +
     Number(
       product.price
-    ).toLocaleString();
+    ).toLocaleString(
+      "zh-TW"
+    );
 
 
   body.appendChild(
@@ -892,16 +1308,12 @@ function tikAddProductCard(
   );
 
 
-  // SKU
-
   tikAddDetail(
     body,
     "商品編號",
     product.sku
   );
 
-
-  // Color
 
   tikAddDetail(
     body,
@@ -912,8 +1324,6 @@ function tikAddProductCard(
   );
 
 
-  // Occasion
-
   tikAddDetail(
     body,
     "適合場合",
@@ -923,16 +1333,12 @@ function tikAddProductCard(
   );
 
 
-  // Stock
-
   tikAddDetail(
     body,
     "庫存",
     product.stock + " 件"
   );
 
-
-  // Reason
 
   if (
     product.explanation
@@ -959,8 +1365,6 @@ function tikAddProductCard(
 
   }
 
-
-  // Product URL
 
   if (product.url) {
 
@@ -1012,9 +1416,9 @@ function tikAddProductCard(
 }
 
 
-// ==========================================
-// Product Detail helper
-// ==========================================
+/* =========================================
+   Detail
+========================================= */
 
 function tikAddDetail(
   parent,
@@ -1044,9 +1448,7 @@ function tikAddDetail(
 
 
   div.textContent =
-    label +
-    "：" +
-    value;
+    `${label}：${value}`;
 
 
   parent.appendChild(
@@ -1056,13 +1458,11 @@ function tikAddDetail(
 }
 
 
-// ==========================================
-// Array helper
-// ==========================================
+/* =========================================
+   Array text
+========================================= */
 
-function tikArrayText(
-  value
-) {
+function tikArrayText(value) {
 
   if (
     Array.isArray(value)
@@ -1078,21 +1478,51 @@ function tikArrayText(
 }
 
 
-// ==========================================
-// Scroll
-// ==========================================
+/* =========================================
+   Scroll
+========================================= */
 
 function tikScrollBottom() {
 
-  tikMessages.scrollTop =
-    tikMessages.scrollHeight;
+  requestAnimationFrame(
+    () => {
+
+      tikMessages.scrollTop =
+        tikMessages.scrollHeight;
+
+    }
+  );
 
 }
 
 
-// ==========================================
-// Send Message
-// ==========================================
+/* =========================================
+   Loading
+========================================= */
+
+function tikSetLoading(
+  loading
+) {
+
+  tikSend.disabled =
+    loading;
+
+
+  tikInput.disabled =
+    loading;
+
+
+  tikStatus.textContent =
+    loading
+      ? "● 正在為您挑選..."
+      : "● AI 客服在線";
+
+}
+
+
+/* =========================================
+   Send
+========================================= */
 
 async function tikSendMessage() {
 
@@ -1100,8 +1530,13 @@ async function tikSendMessage() {
     tikInput.value.trim();
 
 
-  if (!text) {
+  if (
+    !text ||
+    tikSend.disabled
+  ) {
+
     return;
+
   }
 
 
@@ -1115,11 +1550,10 @@ async function tikSendMessage() {
     "";
 
 
-  tikSend.disabled =
-    true;
+  tikSetLoading(
+    true
+  );
 
-
-  // Loading
 
   const loading =
     document.createElement(
@@ -1147,49 +1581,65 @@ async function tikSendMessage() {
 
     const response =
       await fetch(
-
         TIKOLAM_AI_API,
-
         {
 
           method: "POST",
 
           headers: {
-
             "Content-Type":
               "application/json"
-
           },
 
-          body:
-            JSON.stringify({
-
-              message:
-                text
-
-            })
+          body: JSON.stringify(
+            {
+              message: text
+            }
+          )
 
         }
-
       );
 
 
-    const data =
-      await response.json();
+    let data;
 
 
-    loading.remove();
+    try {
+
+      data =
+        await response.json();
+
+    } catch {
+
+      throw new Error(
+        "Server returned invalid JSON"
+      );
+
+    }
 
 
-    if (!response.ok) {
+    if (
+      loading.isConnected
+    ) {
+
+      loading.remove();
+
+    }
+
+
+    if (
+      !response.ok ||
+      !data.success
+    ) {
 
       console.error(
+        "API error:",
         data
       );
 
 
       tikAddMessage(
-        "目前 AI 客服暫時無法回答，請稍後再試。",
+        "系統暫時忙碌，請再按一次送出或稍後重新詢問。",
         "ai"
       );
 
@@ -1199,9 +1649,9 @@ async function tikSendMessage() {
     }
 
 
-    // -----------------------------
-    // AI Summary
-    // -----------------------------
+    /*
+       AI / fallback 的摘要
+    */
 
     if (data.message) {
 
@@ -1213,9 +1663,9 @@ async function tikSendMessage() {
     }
 
 
-    // -----------------------------
-    // Product cards
-    // -----------------------------
+    /*
+       商品卡片
+    */
 
     if (
       Array.isArray(
@@ -1225,27 +1675,22 @@ async function tikSendMessage() {
     ) {
 
       data.recommendations
-        .forEach(product => {
-
-          tikAddProductCard(
-            product
-          );
-
-        });
+        .forEach(
+          product =>
+            tikAddProductCard(
+              product
+            )
+        );
 
     } else {
 
       tikAddMessage(
-        "目前沒有找到完全符合條件的商品。",
+        "目前沒有找到符合條件且有庫存的商品。您可以調整預算、顏色或場合，我再幫您找。",
         "ai"
       );
 
     }
 
-
-    // -----------------------------
-    // Follow-up
-    // -----------------------------
 
     if (
       data.followUpQuestion
@@ -1259,8 +1704,23 @@ async function tikSendMessage() {
     }
 
 
-  } catch(error) {
+    /*
+       開發測試用
+    */
 
+    console.log(
+      "AI provider:",
+      data.provider
+    );
+
+
+    console.log(
+      "Fallback:",
+      data.fallback
+    );
+
+
+  } catch(error) {
 
     if (
       loading.isConnected
@@ -1272,20 +1732,22 @@ async function tikSendMessage() {
 
 
     console.error(
+      "Connection error:",
       error
     );
 
 
     tikAddMessage(
-      "AI 客服目前連線失敗，請稍後再試。",
+      "目前網路連線不穩定，請再試一次。",
       "ai"
     );
 
 
   } finally {
 
-    tikSend.disabled =
-      false;
+    tikSetLoading(
+      false
+    );
 
 
     tikInput.focus();
@@ -1295,19 +1757,21 @@ async function tikSendMessage() {
 }
 
 
-// ==========================================
-// Enter
-// ==========================================
+/* =========================================
+   Enter
+========================================= */
 
 tikInput.addEventListener(
   "keydown",
   function(event) {
 
     if (
-      event.key ===
-        "Enter" &&
-      !tikSend.disabled
+      event.key === "Enter" &&
+      !event.shiftKey
     ) {
+
+      event.preventDefault();
+
 
       tikSendMessage();
 
@@ -1320,6 +1784,25 @@ tikInput.addEventListener(
 tikSend.onclick =
   tikSendMessage;
 
+
+/* =========================================
+   ESC 關閉
+========================================= */
+
+document.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (
+      event.key === "Escape"
+    ) {
+
+      tikCloseChat();
+
+    }
+
+  }
+);
 
 </script>
 
