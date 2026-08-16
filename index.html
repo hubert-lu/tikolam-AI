@@ -2,450 +2,653 @@
 <html lang="zh-TW">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>TIKOLAM 永生花藝術商品</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, "Microsoft JhengHei", sans-serif;
-      background: #f8f6f3;
-      color: #333;
-    }
 
-    /* =========================
-       首頁黑色標題區
-    ========================= */
+<meta charset="UTF-8">
 
-    header {
-      background: #000000;
-      color: #ffffff;
-      text-align: center;
-      padding: 50px 20px;
-    }
+<meta name="viewport"
+content="width=device-width, initial-scale=1.0">
 
-    header h1 {
-      margin: 0;
-      font-size: 38px;
-      letter-spacing: 3px;
-      color: #ffffff;
-    }
+<title>TIKOLAM 永生花藝術商品</title>
 
-    header p {
-      margin-top: 12px;
-      margin-bottom: 0;
-      font-size: 18px;
-      color: #ffffff;
-    }
 
-    /* =========================
-       Main Content
-    ========================= */
+<style>
 
-    main {
-      max-width: 900px;
-      margin: auto;
-      padding: 40px 20px;
-    }
+* {
+  box-sizing: border-box;
+}
 
-    .card {
-      background: white;
-      padding: 30px;
-      border-radius: 16px;
-      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-    }
 
-    .card h2 {
-      margin-top: 0;
-    }
+body {
+  margin: 0;
 
-    /* =========================
-       AI Chat Button
-    ========================= */
+  font-family:
+    Arial,
+    "Microsoft JhengHei",
+    sans-serif;
 
-    #tikolam-ai-btn {
-      position: fixed;
-      right: 20px;
-      bottom: 20px;
+  background: #f8f6f3;
 
-      width: 68px;
-      height: 68px;
+  color: #333;
+}
 
-      border-radius: 50%;
-      border: none;
 
-      background: #000000;
-      color: white;
+/* =====================================
+   Header
+===================================== */
 
-      font-size: 28px;
+header {
 
-      cursor: pointer;
+  background: #000;
 
-      box-shadow: 0 5px 20px rgba(0,0,0,0.25);
+  color: white;
 
-      z-index: 9999;
-    }
+  text-align: center;
 
-    #tikolam-ai-btn:hover {
-      transform: scale(1.05);
-    }
+  padding: 50px 20px;
+}
 
-    /* =========================
-       Chat Window
-    ========================= */
 
-    #tikolam-chat {
-      position: fixed;
+header h1 {
 
-      right: 20px;
-      bottom: 100px;
+  margin: 0;
 
-      width: 370px;
-      height: 560px;
+  font-size: 38px;
 
-      background: white;
+  letter-spacing: 3px;
+}
 
-      border-radius: 18px;
 
-      box-shadow: 0 8px 35px rgba(0,0,0,0.25);
+header p {
 
-      display: none;
+  margin-top: 12px;
 
-      flex-direction: column;
+  margin-bottom: 0;
 
-      overflow: hidden;
+  font-size: 18px;
+}
 
-      z-index: 9999;
-    }
 
-    /* =========================
-       Chat Header
-    ========================= */
+/* =====================================
+   Main
+===================================== */
 
-    .tik-header {
-      background: #000000;
-      color: white;
+main {
 
-      padding: 16px;
-    }
+  max-width: 900px;
 
-    .tik-header-title {
-      font-size: 18px;
-      font-weight: bold;
-    }
+  margin: auto;
 
-    .tik-status {
-      font-size: 12px;
-      color: #dddddd;
-      margin-top: 5px;
-    }
+  padding: 40px 20px;
+}
 
-    /* =========================
-       Messages
-    ========================= */
 
-    #tik-messages {
-      flex: 1;
+.card {
 
-      padding: 15px;
+  background: white;
 
-      overflow-y: auto;
+  padding: 30px;
 
-      background: #faf8f6;
-    }
+  border-radius: 16px;
 
-    .tik-message {
-      margin-bottom: 12px;
+  box-shadow:
+    0 5px 20px
+    rgba(0,0,0,0.08);
+}
 
-      max-width: 84%;
 
-      padding: 11px 14px;
+.card h2 {
+  margin-top: 0;
+}
 
-      border-radius: 15px;
 
-      line-height: 1.6;
+/* =====================================
+   Chat Button
+===================================== */
 
-      font-size: 14px;
-    }
+#tikolam-ai-btn {
 
-    .tik-ai-message {
-      background: white;
+  position: fixed;
 
-      border: 1px solid #e5e5e5;
+  right: 20px;
 
-      margin-right: auto;
-    }
+  bottom: 20px;
 
-    .tik-user-message {
-      background: #000000;
+  width: 68px;
 
-      color: white;
+  height: 68px;
 
-      margin-left: auto;
-    }
+  border-radius: 50%;
 
-    /* =========================
-       Quick Buttons
-    ========================= */
+  border: none;
 
-    .tik-quick-buttons {
-      padding: 8px 10px;
+  background: #000;
 
-      background: white;
+  color: white;
 
-      border-top: 1px solid #eeeeee;
-    }
+  font-size: 28px;
 
-    .tik-quick-buttons button {
-      margin: 3px;
+  cursor: pointer;
 
-      padding: 7px 10px;
+  box-shadow:
+    0 5px 20px
+    rgba(0,0,0,0.25);
 
-      border-radius: 18px;
+  z-index: 9999;
+}
 
-      border: 1px solid #cccccc;
 
-      background: white;
+#tikolam-ai-btn:hover {
 
-      cursor: pointer;
+  transform: scale(1.05);
+}
 
-      font-size: 13px;
-    }
 
-    .tik-quick-buttons button:hover {
-      background: #f2f2f2;
-    }
+/* =====================================
+   Chat Window
+===================================== */
 
-    /* =========================
-       Input Area
-    ========================= */
+#tikolam-chat {
 
-    .tik-input-area {
-      display: flex;
+  position: fixed;
 
-      padding: 10px;
+  right: 20px;
 
-      border-top: 1px solid #dddddd;
+  bottom: 100px;
 
-      background: white;
-    }
+  width: 400px;
 
-    #tik-input {
-      flex: 1;
+  height: 650px;
 
-      padding: 11px 13px;
+  background: white;
 
-      border: 1px solid #cccccc;
+  border-radius: 18px;
 
-      border-radius: 20px;
+  box-shadow:
+    0 8px 35px
+    rgba(0,0,0,0.25);
 
-      outline: none;
-    }
+  display: none;
 
-    #tik-send {
-      margin-left: 8px;
+  flex-direction: column;
 
-      padding: 10px 15px;
+  overflow: hidden;
 
-      border: none;
+  z-index: 9999;
+}
 
-      border-radius: 20px;
 
-      background: #000000;
+/* =====================================
+   Chat Header
+===================================== */
 
-      color: white;
+.tik-header {
 
-      cursor: pointer;
-    }
+  background: #000;
 
-    #tik-send:disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
-    }
+  color: white;
 
-    /* =========================
-       Mobile
-    ========================= */
+  padding: 16px;
+}
 
-    @media (max-width: 600px) {
 
-      header {
-        padding: 38px 15px;
-      }
+.tik-header-title {
 
-      header h1 {
-        font-size: 30px;
-      }
+  font-size: 18px;
 
-      header p {
-        font-size: 16px;
-      }
+  font-weight: bold;
+}
 
-      #tikolam-chat {
-        width: calc(100% - 20px);
 
-        height: 72vh;
+.tik-status {
 
-        right: 10px;
+  margin-top: 5px;
 
-        bottom: 92px;
-      }
+  font-size: 12px;
 
-      #tikolam-ai-btn {
-        right: 15px;
-        bottom: 15px;
-      }
-    }
+  color: #ddd;
+}
 
-  </style>
+
+/* =====================================
+   Messages
+===================================== */
+
+#tik-messages {
+
+  flex: 1;
+
+  padding: 15px;
+
+  overflow-y: auto;
+
+  background: #faf8f6;
+}
+
+
+.tik-message {
+
+  margin-bottom: 12px;
+
+  max-width: 88%;
+
+  padding: 11px 14px;
+
+  border-radius: 15px;
+
+  line-height: 1.6;
+
+  font-size: 14px;
+
+  white-space: pre-wrap;
+}
+
+
+.tik-ai-message {
+
+  background: white;
+
+  border: 1px solid #e5e5e5;
+
+  margin-right: auto;
+}
+
+
+.tik-user-message {
+
+  background: #000;
+
+  color: white;
+
+  margin-left: auto;
+}
+
+
+/* =====================================
+   Product Card
+===================================== */
+
+.tik-product-card {
+
+  background: white;
+
+  border: 1px solid #ddd;
+
+  border-radius: 15px;
+
+  overflow: hidden;
+
+  margin-bottom: 14px;
+
+  box-shadow:
+    0 3px 10px
+    rgba(0,0,0,0.07);
+}
+
+
+.tik-product-image {
+
+  width: 100%;
+
+  height: 180px;
+
+  object-fit: cover;
+
+  display: block;
+
+  background: #eee;
+}
+
+
+.tik-product-body {
+
+  padding: 14px;
+}
+
+
+.tik-product-name {
+
+  font-size: 17px;
+
+  font-weight: bold;
+
+  margin-bottom: 8px;
+}
+
+
+.tik-product-price {
+
+  font-size: 20px;
+
+  font-weight: bold;
+
+  margin-bottom: 10px;
+}
+
+
+.tik-product-detail {
+
+  margin-bottom: 5px;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+
+  color: #555;
+}
+
+
+.tik-product-reason {
+
+  margin-top: 10px;
+
+  padding-top: 10px;
+
+  border-top: 1px solid #eee;
+
+  font-size: 13px;
+
+  line-height: 1.5;
+}
+
+
+.tik-product-link {
+
+  display: block;
+
+  width: 100%;
+
+  margin-top: 12px;
+
+  padding: 10px;
+
+  border-radius: 8px;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  background: #000;
+
+  color: white;
+
+  font-weight: bold;
+}
+
+
+/* =====================================
+   Quick buttons
+===================================== */
+
+.tik-quick-buttons {
+
+  padding: 8px 10px;
+
+  background: white;
+
+  border-top:
+    1px solid #eee;
+}
+
+
+.tik-quick-buttons button {
+
+  margin: 3px;
+
+  padding: 7px 10px;
+
+  border-radius: 18px;
+
+  border:
+    1px solid #ccc;
+
+  background: white;
+
+  cursor: pointer;
+
+  font-size: 13px;
+}
+
+
+/* =====================================
+   Input
+===================================== */
+
+.tik-input-area {
+
+  display: flex;
+
+  padding: 10px;
+
+  border-top:
+    1px solid #ddd;
+
+  background: white;
+}
+
+
+#tik-input {
+
+  flex: 1;
+
+  padding: 11px 13px;
+
+  border:
+    1px solid #ccc;
+
+  border-radius: 20px;
+
+  outline: none;
+}
+
+
+#tik-send {
+
+  margin-left: 8px;
+
+  padding: 10px 15px;
+
+  border: none;
+
+  border-radius: 20px;
+
+  background: #000;
+
+  color: white;
+
+  cursor: pointer;
+}
+
+
+#tik-send:disabled {
+
+  opacity: 0.5;
+
+  cursor: not-allowed;
+}
+
+
+/* =====================================
+   Mobile
+===================================== */
+
+@media(max-width:600px) {
+
+  header {
+
+    padding:
+      38px 15px;
+  }
+
+
+  header h1 {
+
+    font-size: 30px;
+  }
+
+
+  header p {
+
+    font-size: 16px;
+  }
+
+
+  #tikolam-chat {
+
+    width:
+      calc(100% - 20px);
+
+    height: 78vh;
+
+    right: 10px;
+
+    bottom: 92px;
+  }
+
+
+  #tikolam-ai-btn {
+
+    right: 15px;
+
+    bottom: 15px;
+  }
+
+}
+
+</style>
+
 </head>
 
 
 <body>
 
 
-<!-- ==================================== -->
-<!-- 黑色品牌區 -->
-<!-- ==================================== -->
-
 <header>
 
-  <h1>TIKOLAM</h1>
+<h1>TIKOLAM</h1>
 
-  <p>
-    永生花・藝術花禮・手工藝術商品
-  </p>
+<p>
+永生花・藝術花禮・手工藝術商品
+</p>
 
 </header>
 
 
-<!-- ==================================== -->
-<!-- 首頁內容 -->
-<!-- ==================================== -->
-
 <main>
 
-  <div class="card">
+<div class="card">
 
-    <h2>
-      為重要的人，挑一份特別的禮物
-    </h2>
+<h2>
+為重要的人，挑一份特別的禮物
+</h2>
 
-    <p>
-      TIKOLAM 提供永生花、藝術花禮與手工設計商品，
-      適合生日、紀念日、情人節、婚禮與各種送禮場合。
-    </p>
+<p>
+TIKOLAM 提供永生花、藝術花禮與手工設計商品，
+適合生日、紀念日、情人節、婚禮與各種送禮場合。
+</p>
 
-    <p>
-      點擊右下角 💬，AI 客服可以依照送禮對象、
-      場合與預算幫您推薦適合的商品。
-    </p>
+<p>
+點擊右下角 💬，
+告訴 AI 客服送禮對象、場合、預算與喜歡的顏色，
+AI 會從 TIKOLAM 商品中為您挑選。
+</p>
 
-  </div>
+</div>
 
 </main>
 
 
-<!-- ==================================== -->
-<!-- TIKOLAM AI Chat Widget -->
-<!-- ==================================== -->
+<!-- Chat Button -->
 
 <button id="tikolam-ai-btn">
-  💬
+💬
 </button>
 
+
+<!-- Chat Window -->
 
 <div id="tikolam-chat">
 
 
-  <!-- Chat Header -->
+<div class="tik-header">
 
-  <div class="tik-header">
+<div class="tik-header-title">
+🌹 TIKOLAM AI 花禮顧問
+</div>
 
-    <div class="tik-header-title">
-      🌹 TIKOLAM AI 花禮顧問
-    </div>
+<div class="tik-status">
+● Gemini AI 客服在線
+</div>
 
-    <div class="tik-status">
-      ● AI 客服在線
-    </div>
-
-  </div>
+</div>
 
 
-  <!-- Messages -->
-
-  <div id="tik-messages">
-
-    <div class="tik-message tik-ai-message">
-
-      您好 👋<br><br>
-
-      我是 <b>TIKOLAM AI 花禮顧問</b>。<br><br>
-
-      我可以協助您挑選：<br><br>
-
-      🌹 永生花<br>
-      🎁 永生花禮盒<br>
-      💐 藝術花禮<br>
-      💍 婚禮／紀念日花禮<br>
-      🎨 手工藝術商品<br><br>
-
-      您只要告訴我：<br><br>
-
-      <b>送給誰＋場合＋預算</b><br><br>
-
-      我就可以幫您推薦適合的商品。
-
-    </div>
-
-  </div>
+<div id="tik-messages">
 
 
-  <!-- 快速選項 -->
+<div class="tik-message tik-ai-message">
+您好 👋
 
-  <div class="tik-quick-buttons">
+我是 TIKOLAM AI 花禮顧問。
 
-    <button onclick="tikQuick('我要送生日禮物')">
-      🎂 生日送禮
-    </button>
+您可以告訴我：
 
-    <button onclick="tikQuick('我要送女朋友禮物')">
-      ❤️ 情人送禮
-    </button>
+① 送給誰
+② 什麼場合
+③ 預算
+④ 喜歡什麼顏色
 
-    <button onclick="tikQuick('我要找2000元以下的永生花')">
-      💰 2000元以下
-    </button>
+例如：
 
-    <button onclick="tikQuick('介紹熱門永生花商品')">
-      🌹 熱門商品
-    </button>
+「送女性朋友生日，預算2000元，喜歡紫色」
 
-  </div>
+我會從目前的 TIKOLAM 商品中幫您挑選。
+</div>
 
 
-  <!-- 輸入區 -->
+</div>
 
-  <div class="tik-input-area">
 
-    <input
-      id="tik-input"
-      type="text"
-      placeholder="例如：送老婆，預算3000元..."
-    >
+<div class="tik-quick-buttons">
 
-    <button id="tik-send">
-      送出
-    </button>
+<button
+onclick="tikQuick('我要送女性朋友生日禮物，預算2000元，喜歡紫色')">
+💜 紫色生日禮
+</button>
 
-  </div>
+
+<button
+onclick="tikQuick('我要送女朋友紀念日禮物，預算3000元，喜歡紅色')">
+❤️ 紀念日
+</button>
+
+
+<button
+onclick="tikQuick('我要找2000元以下的永生花')">
+💰 2000元以下
+</button>
+
+
+<button
+onclick="tikQuick('推薦目前有庫存的熱門商品')">
+🌹 推薦商品
+</button>
+
+</div>
+
+
+<div class="tik-input-area">
+
+<input
+id="tik-input"
+type="text"
+placeholder="例如：送媽媽，預算2500元..."
+>
+
+<button id="tik-send">
+送出
+</button>
+
+</div>
 
 
 </div>
@@ -453,47 +656,64 @@
 
 <script>
 
-/* ====================================
-   Cloudflare Worker URL
-==================================== */
+
+// ==========================================
+// Worker
+// ==========================================
 
 const TIKOLAM_AI_API =
-  "https://tikolam-ai.hubert893204.workers.dev/";
+"https://tikolam-ai.hubert893204.workers.dev/";
 
 
-/* ====================================
-   取得 HTML 元件
-==================================== */
+// ==========================================
+// Elements
+// ==========================================
 
 const tikButton =
-document.getElementById("tikolam-ai-btn");
+document.getElementById(
+  "tikolam-ai-btn"
+);
 
 const tikChat =
-document.getElementById("tikolam-chat");
+document.getElementById(
+  "tikolam-chat"
+);
 
 const tikInput =
-document.getElementById("tik-input");
+document.getElementById(
+  "tik-input"
+);
 
 const tikSend =
-document.getElementById("tik-send");
+document.getElementById(
+  "tik-send"
+);
 
 const tikMessages =
-document.getElementById("tik-messages");
+document.getElementById(
+  "tik-messages"
+);
 
 
-/* ====================================
-   開啟 / 關閉 Chat
-==================================== */
+// ==========================================
+// Open / Close
+// ==========================================
 
-tikButton.onclick = function() {
+tikButton.onclick =
+function() {
 
-  if (tikChat.style.display === "flex") {
+  if (
+    tikChat.style.display ===
+    "flex"
+  ) {
 
-    tikChat.style.display = "none";
+    tikChat.style.display =
+      "none";
 
   } else {
 
-    tikChat.style.display = "flex";
+    tikChat.style.display =
+      "flex";
 
     tikInput.focus();
 
@@ -502,201 +722,571 @@ tikButton.onclick = function() {
 };
 
 
-/* ====================================
-   快速問題
-==================================== */
+// ==========================================
+// Quick question
+// ==========================================
 
 function tikQuick(question) {
 
-  tikInput.value = question;
+  tikInput.value =
+    question;
 
   tikSendMessage();
 
 }
 
 
-/* ====================================
-   加入對話訊息
-==================================== */
+// ==========================================
+// Normal message
+// ==========================================
 
-function tikAddMessage(text, type) {
+function tikAddMessage(
+  text,
+  type
+) {
 
   const div =
-  document.createElement("div");
+    document.createElement(
+      "div"
+    );
 
-  div.classList.add("tik-message");
 
-  if (type === "user") {
+  div.className =
+    "tik-message " +
+    (
+      type === "user"
+      ? "tik-user-message"
+      : "tik-ai-message"
+    );
 
-    div.classList.add("tik-user-message");
 
-  } else {
+  div.textContent =
+    text;
 
-    div.classList.add("tik-ai-message");
 
-  }
+  tikMessages.appendChild(
+    div
+  );
 
-  /*
-    AI 回覆使用 textContent，
-    避免外部內容直接插入 HTML。
-  */
 
-  div.textContent = text;
-
-  tikMessages.appendChild(div);
-
-  tikMessages.scrollTop =
-  tikMessages.scrollHeight;
+  tikScrollBottom();
 
 }
 
 
-/* ====================================
-   發送訊息到 Gemini / Cloudflare Worker
-==================================== */
+// ==========================================
+// Product Card
+// ==========================================
+
+function tikAddProductCard(
+  product
+) {
+
+  const card =
+    document.createElement(
+      "div"
+    );
+
+
+  card.className =
+    "tik-product-card";
+
+
+  // -----------------------------
+  // Image
+  // -----------------------------
+
+  if (product.image) {
+
+    const img =
+      document.createElement(
+        "img"
+      );
+
+
+    img.className =
+      "tik-product-image";
+
+
+    img.src =
+      product.image;
+
+
+    img.alt =
+      product.name || "商品";
+
+
+    img.onerror =
+      function() {
+
+        this.style.display =
+          "none";
+
+      };
+
+
+    card.appendChild(
+      img
+    );
+
+  }
+
+
+  // -----------------------------
+  // Body
+  // -----------------------------
+
+  const body =
+    document.createElement(
+      "div"
+    );
+
+
+  body.className =
+    "tik-product-body";
+
+
+  // Name
+
+  const name =
+    document.createElement(
+      "div"
+    );
+
+
+  name.className =
+    "tik-product-name";
+
+
+  name.textContent =
+    "🌹 " +
+    product.name;
+
+
+  body.appendChild(
+    name
+  );
+
+
+  // Price
+
+  const price =
+    document.createElement(
+      "div"
+    );
+
+
+  price.className =
+    "tik-product-price";
+
+
+  price.textContent =
+    "NT$" +
+    Number(
+      product.price
+    ).toLocaleString();
+
+
+  body.appendChild(
+    price
+  );
+
+
+  // SKU
+
+  tikAddDetail(
+    body,
+    "商品編號",
+    product.sku
+  );
+
+
+  // Color
+
+  tikAddDetail(
+    body,
+    "顏色",
+    tikArrayText(
+      product.color
+    )
+  );
+
+
+  // Occasion
+
+  tikAddDetail(
+    body,
+    "適合場合",
+    tikArrayText(
+      product.occasion
+    )
+  );
+
+
+  // Stock
+
+  tikAddDetail(
+    body,
+    "庫存",
+    product.stock + " 件"
+  );
+
+
+  // Reason
+
+  if (
+    product.explanation
+  ) {
+
+    const reason =
+      document.createElement(
+        "div"
+      );
+
+
+    reason.className =
+      "tik-product-reason";
+
+
+    reason.textContent =
+      "推薦原因：" +
+      product.explanation;
+
+
+    body.appendChild(
+      reason
+    );
+
+  }
+
+
+  // Product URL
+
+  if (product.url) {
+
+    const link =
+      document.createElement(
+        "a"
+      );
+
+
+    link.className =
+      "tik-product-link";
+
+
+    link.href =
+      product.url;
+
+
+    link.target =
+      "_blank";
+
+
+    link.rel =
+      "noopener noreferrer";
+
+
+    link.textContent =
+      "查看商品";
+
+
+    body.appendChild(
+      link
+    );
+
+  }
+
+
+  card.appendChild(
+    body
+  );
+
+
+  tikMessages.appendChild(
+    card
+  );
+
+
+  tikScrollBottom();
+
+}
+
+
+// ==========================================
+// Product Detail helper
+// ==========================================
+
+function tikAddDetail(
+  parent,
+  label,
+  value
+) {
+
+  if (
+    value === undefined ||
+    value === null ||
+    value === ""
+  ) {
+
+    return;
+
+  }
+
+
+  const div =
+    document.createElement(
+      "div"
+    );
+
+
+  div.className =
+    "tik-product-detail";
+
+
+  div.textContent =
+    label +
+    "：" +
+    value;
+
+
+  parent.appendChild(
+    div
+  );
+
+}
+
+
+// ==========================================
+// Array helper
+// ==========================================
+
+function tikArrayText(
+  value
+) {
+
+  if (
+    Array.isArray(value)
+  ) {
+
+    return value.join("・");
+
+  }
+
+
+  return value || "";
+
+}
+
+
+// ==========================================
+// Scroll
+// ==========================================
+
+function tikScrollBottom() {
+
+  tikMessages.scrollTop =
+    tikMessages.scrollHeight;
+
+}
+
+
+// ==========================================
+// Send Message
+// ==========================================
 
 async function tikSendMessage() {
 
   const text =
-  tikInput.value.trim();
+    tikInput.value.trim();
+
 
   if (!text) {
     return;
   }
 
 
-  /* 顯示客戶訊息 */
-
-  tikAddMessage(text, "user");
-
-  tikInput.value = "";
-
-
-  /* 暫時避免重複點擊 */
-
-  tikSend.disabled = true;
+  tikAddMessage(
+    text,
+    "user"
+  );
 
 
-  /* 顯示讀取中 */
+  tikInput.value =
+    "";
+
+
+  tikSend.disabled =
+    true;
+
+
+  // Loading
 
   const loading =
-  document.createElement("div");
+    document.createElement(
+      "div"
+    );
+
 
   loading.className =
-  "tik-message tik-ai-message";
+    "tik-message tik-ai-message";
+
 
   loading.textContent =
-  "🌹 TIKOLAM AI 正在幫您挑選...";
+    "🌹 正在從商品中為您挑選...";
 
-  tikMessages.appendChild(loading);
 
-  tikMessages.scrollTop =
-  tikMessages.scrollHeight;
+  tikMessages.appendChild(
+    loading
+  );
+
+
+  tikScrollBottom();
 
 
   try {
 
     const response =
       await fetch(
+
         TIKOLAM_AI_API,
+
         {
+
           method: "POST",
 
           headers: {
-            "Content-Type": "application/json"
+
+            "Content-Type":
+              "application/json"
+
           },
 
-          body: JSON.stringify({
-            message: text
-          })
+          body:
+            JSON.stringify({
+
+              message:
+                text
+
+            })
+
         }
+
       );
 
 
-    let data;
-
-    try {
-
-      data =
-        await response.json();
-
-    } catch {
-
-      throw new Error(
-        "伺服器沒有回傳正確的 JSON"
-      );
-
-    }
+    const data =
+      await response.json();
 
 
     loading.remove();
 
 
-    /* Worker 或 Gemini 發生錯誤 */
-
     if (!response.ok) {
 
       console.error(
-        "TIKOLAM AI API Error:",
         data
       );
+
 
       tikAddMessage(
         "目前 AI 客服暫時無法回答，請稍後再試。",
         "ai"
       );
 
+
       return;
+
     }
 
 
-    /* 沒有 reply */
+    // -----------------------------
+    // AI Summary
+    // -----------------------------
 
-    if (!data.reply) {
-
-      console.error(
-        "No reply returned:",
-        data
-      );
+    if (data.message) {
 
       tikAddMessage(
-        "目前沒有收到 AI 的回答，請再試一次。",
+        data.message,
         "ai"
       );
 
-      return;
     }
 
 
-    /* 顯示 Gemini 回答 */
+    // -----------------------------
+    // Product cards
+    // -----------------------------
 
-    tikAddMessage(
-      data.reply,
-      "ai"
-    );
+    if (
+      Array.isArray(
+        data.recommendations
+      ) &&
+      data.recommendations.length > 0
+    ) {
+
+      data.recommendations
+        .forEach(product => {
+
+          tikAddProductCard(
+            product
+          );
+
+        });
+
+    } else {
+
+      tikAddMessage(
+        "目前沒有找到完全符合條件的商品。",
+        "ai"
+      );
+
+    }
 
 
-  } catch (error) {
+    // -----------------------------
+    // Follow-up
+    // -----------------------------
 
-    if (loading.isConnected) {
+    if (
+      data.followUpQuestion
+    ) {
+
+      tikAddMessage(
+        data.followUpQuestion,
+        "ai"
+      );
+
+    }
+
+
+  } catch(error) {
+
+
+    if (
+      loading.isConnected
+    ) {
+
       loading.remove();
+
     }
 
 
     console.error(
-      "TIKOLAM AI connection error:",
       error
     );
 
 
     tikAddMessage(
-      "目前 AI 客服連線失敗，請稍後再試。",
+      "AI 客服目前連線失敗，請稍後再試。",
       "ai"
     );
 
+
   } finally {
 
-    tikSend.disabled = false;
+    tikSend.disabled =
+      false;
+
 
     tikInput.focus();
 
@@ -705,16 +1295,17 @@ async function tikSendMessage() {
 }
 
 
-/* ====================================
-   Enter 送出
-==================================== */
+// ==========================================
+// Enter
+// ==========================================
 
 tikInput.addEventListener(
   "keydown",
   function(event) {
 
     if (
-      event.key === "Enter" &&
+      event.key ===
+        "Enter" &&
       !tikSend.disabled
     ) {
 
@@ -726,15 +1317,13 @@ tikInput.addEventListener(
 );
 
 
-/* ====================================
-   送出按鈕
-==================================== */
-
 tikSend.onclick =
-tikSendMessage;
+  tikSendMessage;
+
 
 </script>
 
 
 </body>
+
 </html>
