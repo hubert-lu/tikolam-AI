@@ -2,86 +2,274 @@
 <html lang="zh-TW">
 
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
+  <title>TIKOLAM 永生花藝術商品</title>
 
-<meta name="viewport"
-content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      box-sizing: border-box;
+    }
 
-<title>TIKOLAM AI</title>
+    body {
+      margin: 0;
+      font-family: Arial, "Microsoft JhengHei", sans-serif;
+      background: #f8f6f3;
+      color: #333;
+    }
 
-<style>
+    header {
+      background: #ffffff;
+      text-align: center;
+      padding: 45px 20px;
+      border-bottom: 1px solid #eee;
+    }
 
-body {
+    header h1 {
+      margin: 0;
+      font-size: 36px;
+    }
 
-    font-family:
-    Arial,
-    "Microsoft JhengHei",
-    sans-serif;
+    header p {
+      color: #777;
+    }
 
-    margin: 0;
+    main {
+      max-width: 900px;
+      margin: auto;
+      padding: 40px 20px;
+    }
 
-    background: #f5f5f5;
-
-}
-
-
-header {
-
-    background: #111;
-
-    color: white;
-
-    padding: 40px;
-
-    text-align: center;
-
-}
-
-
-main {
-
-    max-width: 900px;
-
-    margin: auto;
-
-    padding: 40px 20px;
-
-}
-
-
-.card {
-
-    background: white;
-
-    padding: 30px;
-
-    border-radius: 15px;
-
-    box-shadow:
-    0 5px 20px
-    rgba(0,0,0,0.1);
-
-}
+    .card {
+      background: white;
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    }
 
 
-button {
+    /* =========================
+       AI Chat Button
+    ========================= */
 
-    background: #111;
+    #tikolam-ai-btn {
+      position: fixed;
+      right: 20px;
+      bottom: 20px;
 
-    color: white;
+      width: 68px;
+      height: 68px;
 
-    border: none;
+      border-radius: 50%;
+      border: none;
 
-    padding: 12px 20px;
+      background: #222;
+      color: white;
 
-    border-radius: 8px;
+      font-size: 28px;
 
-    cursor: pointer;
+      cursor: pointer;
 
-}
+      box-shadow: 0 5px 20px rgba(0,0,0,0.25);
 
-</style>
+      z-index: 9999;
+    }
+
+
+    /* =========================
+       Chat Window
+    ========================= */
+
+    #tikolam-chat {
+      position: fixed;
+
+      right: 20px;
+      bottom: 100px;
+
+      width: 370px;
+      height: 560px;
+
+      background: white;
+
+      border-radius: 18px;
+
+      box-shadow: 0 8px 35px rgba(0,0,0,0.25);
+
+      display: none;
+
+      flex-direction: column;
+
+      overflow: hidden;
+
+      z-index: 9999;
+    }
+
+
+    .tik-header {
+      background: #222;
+      color: white;
+
+      padding: 16px;
+    }
+
+    .tik-header-title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+
+    .tik-status {
+      font-size: 12px;
+      color: #ddd;
+      margin-top: 5px;
+    }
+
+
+    /* =========================
+       Messages
+    ========================= */
+
+    #tik-messages {
+      flex: 1;
+
+      padding: 15px;
+
+      overflow-y: auto;
+
+      background: #faf8f6;
+    }
+
+    .tik-message {
+      margin-bottom: 12px;
+
+      max-width: 84%;
+
+      padding: 11px 14px;
+
+      border-radius: 15px;
+
+      line-height: 1.6;
+
+      font-size: 14px;
+    }
+
+    .tik-ai-message {
+      background: white;
+
+      border: 1px solid #e5e5e5;
+
+      margin-right: auto;
+    }
+
+    .tik-user-message {
+      background: #222;
+
+      color: white;
+
+      margin-left: auto;
+    }
+
+
+    /* =========================
+       Quick Buttons
+    ========================= */
+
+    .tik-quick-buttons {
+      padding: 8px 10px;
+
+      background: white;
+
+      border-top: 1px solid #eee;
+    }
+
+    .tik-quick-buttons button {
+      margin: 3px;
+
+      padding: 7px 10px;
+
+      border-radius: 18px;
+
+      border: 1px solid #ccc;
+
+      background: white;
+
+      cursor: pointer;
+
+      font-size: 13px;
+    }
+
+    .tik-quick-buttons button:hover {
+      background: #f2f2f2;
+    }
+
+
+    /* =========================
+       Input
+    ========================= */
+
+    .tik-input-area {
+      display: flex;
+
+      padding: 10px;
+
+      border-top: 1px solid #ddd;
+
+      background: white;
+    }
+
+    #tik-input {
+      flex: 1;
+
+      padding: 11px 13px;
+
+      border: 1px solid #ccc;
+
+      border-radius: 20px;
+
+      outline: none;
+    }
+
+    #tik-send {
+      margin-left: 8px;
+
+      padding: 10px 15px;
+
+      border: none;
+
+      border-radius: 20px;
+
+      background: #222;
+
+      color: white;
+
+      cursor: pointer;
+    }
+
+
+    /* =========================
+       Mobile
+    ========================= */
+
+    @media (max-width: 600px) {
+
+      #tikolam-chat {
+        width: calc(100% - 20px);
+
+        height: 72vh;
+
+        right: 10px;
+
+        bottom: 92px;
+      }
+
+      #tikolam-ai-btn {
+        right: 15px;
+        bottom: 15px;
+      }
+
+    }
+
+  </style>
 
 </head>
 
@@ -91,40 +279,520 @@ button {
 
 <header>
 
-<h1>TIKOLAM</h1>
+  <h1>TIKOLAM</h1>
 
-<p>
-AI Business Consulting
-</p>
+  <p>
+    永生花・藝術花禮・手工藝術商品
+  </p>
 
 </header>
 
 
 <main>
 
-<div class="card">
+  <div class="card">
 
-<h2>
-TIKOLAM AI 客服
-</h2>
+    <h2>
+      為重要的人，挑一份特別的禮物
+    </h2>
 
-<p>
+    <p>
+      TIKOLAM 提供永生花、藝術花禮與手工設計商品，
+      適合生日、紀念日、情人節、婚禮與各種送禮場合。
+    </p>
 
-提供TIKOLAM藝術商品AI客服！
+    <p>
+      點擊右下角 💬，AI 客服可以依照送禮對象、
+      場合與預算幫您推薦適合的商品。
+    </p>
 
-</p>
+  </div>
+
+</main>
 
 
-<button onclick="alert('AI 客服功能即將加入')">
 
-開始諮詢
+<!-- ==================================== -->
+<!-- TIKOLAM AI Chat Widget -->
+<!-- ==================================== -->
 
+
+<button id="tikolam-ai-btn">
+  💬
 </button>
+
+
+<div id="tikolam-chat">
+
+
+  <div class="tik-header">
+
+    <div class="tik-header-title">
+      🌹 TIKOLAM AI 花禮顧問
+    </div>
+
+    <div class="tik-status">
+      ● AI 客服在線
+    </div>
+
+  </div>
+
+
+  <div id="tik-messages">
+
+
+    <div class="tik-message tik-ai-message">
+
+      您好 👋<br><br>
+
+      我是 <b>TIKOLAM AI 花禮顧問</b>。<br><br>
+
+      我可以協助您挑選：<br><br>
+
+      🌹 永生花<br>
+      🎁 永生花禮盒<br>
+      💐 桌上型花禮<br>
+      💍 婚禮／紀念日花禮<br>
+      🎨 手工藝術商品<br><br>
+
+      您只要告訴我：<br><br>
+
+      「送給誰＋場合＋預算」<br><br>
+
+      我就可以幫您推薦適合的商品。
+
+    </div>
+
+
+  </div>
+
+
+
+  <!-- 快速選項 -->
+
+  <div class="tik-quick-buttons">
+
+    <button onclick="tikQuick('我要送生日禮物')">
+      🎂 生日送禮
+    </button>
+
+    <button onclick="tikQuick('我要送女朋友禮物')">
+      ❤️ 情人送禮
+    </button>
+
+    <button onclick="tikQuick('我要找2000元以下的永生花')">
+      💰 2000元以下
+    </button>
+
+    <button onclick="tikQuick('介紹熱門永生花商品')">
+      🌹 熱門商品
+    </button>
+
+  </div>
+
+
+
+  <!-- 輸入 -->
+
+  <div class="tik-input-area">
+
+    <input
+      id="tik-input"
+      type="text"
+      placeholder="例如：送老婆，預算3000元..."
+    >
+
+    <button id="tik-send">
+      送出
+    </button>
+
+  </div>
 
 
 </div>
 
-</main>
+
+
+<script>
+
+const tikButton =
+document.getElementById("tikolam-ai-btn");
+
+const tikChat =
+document.getElementById("tikolam-chat");
+
+const tikInput =
+document.getElementById("tik-input");
+
+const tikSend =
+document.getElementById("tik-send");
+
+const tikMessages =
+document.getElementById("tik-messages");
+
+
+
+/* =========================
+   開啟 / 關閉 Chat
+========================= */
+
+tikButton.onclick = function() {
+
+  if (tikChat.style.display === "flex") {
+
+    tikChat.style.display = "none";
+
+  } else {
+
+    tikChat.style.display = "flex";
+
+  }
+
+};
+
+
+
+/* =========================
+   快速問題
+========================= */
+
+function tikQuick(question) {
+
+  tikInput.value = question;
+
+  tikSendMessage();
+
+}
+
+
+
+/* =========================
+   加入訊息
+========================= */
+
+function tikAddMessage(text, type) {
+
+  const div =
+  document.createElement("div");
+
+  div.classList.add("tik-message");
+
+
+  if (type === "user") {
+
+    div.classList.add("tik-user-message");
+
+  } else {
+
+    div.classList.add("tik-ai-message");
+
+  }
+
+
+  div.innerHTML = text;
+
+  tikMessages.appendChild(div);
+
+  tikMessages.scrollTop =
+  tikMessages.scrollHeight;
+
+}
+
+
+
+/* =========================
+   發送訊息
+========================= */
+
+function tikSendMessage() {
+
+  const text =
+  tikInput.value.trim();
+
+
+  if (!text) return;
+
+
+  tikAddMessage(text, "user");
+
+
+  tikInput.value = "";
+
+
+  const loading =
+  document.createElement("div");
+
+  loading.className =
+  "tik-message tik-ai-message";
+
+  loading.innerHTML =
+  "🌹 正在幫您挑選適合的商品...";
+
+
+  tikMessages.appendChild(loading);
+
+
+  setTimeout(function() {
+
+    loading.remove();
+
+    const reply =
+    tikDemoAI(text);
+
+    tikAddMessage(reply, "ai");
+
+  }, 600);
+
+}
+
+
+
+/* =========================
+   Enter 送出
+========================= */
+
+tikInput.addEventListener(
+  "keydown",
+  function(event) {
+
+    if (event.key === "Enter") {
+
+      tikSendMessage();
+
+    }
+
+  }
+);
+
+
+tikSend.onclick =
+tikSendMessage;
+
+
+
+/* =========================
+   Demo AI
+========================= */
+
+function tikDemoAI(question) {
+
+  const q =
+  question.toLowerCase();
+
+
+
+  /* 生日 */
+
+  if (
+    q.includes("生日")
+  ) {
+
+    return `
+    🎂 如果是生日送禮，我推薦永生花系列。<br><br>
+
+    永生花可以長時間保存，
+    很適合作為有紀念性的生日禮物。<br><br>
+
+    我可以依照預算幫您挑選：<br><br>
+
+    🌹 NT$1,000 以下<br>
+    🌹 NT$1,000～2,000<br>
+    🌹 NT$2,000～3,000<br>
+    🌹 NT$3,000 以上<br><br>
+
+    請問您的預算大約是多少呢？
+    `;
+
+  }
+
+
+
+  /* 女朋友 / 老婆 / 情人 */
+
+  if (
+    q.includes("女朋友") ||
+    q.includes("老婆") ||
+    q.includes("情人") ||
+    q.includes("紀念日")
+  ) {
+
+    return `
+    ❤️ 如果是送給另一半，
+    我會比較推薦浪漫型的永生花禮。<br><br>
+
+    例如：<br><br>
+
+    🌹 永生玫瑰花禮盒<br>
+    💐 粉色系永生花<br>
+    🌹 永生花玻璃罩<br><br>
+
+    如果您告訴我：<br><br>
+
+    ① 預算<br>
+    ② 喜歡粉色、紅色或其他色系<br>
+    ③ 生日、紀念日或情人節<br><br>
+
+    我可以再幫您縮小選擇。
+    `;
+
+  }
+
+
+
+  /* 2000 */
+
+  if (
+    q.includes("2000") ||
+    q.includes("兩千")
+  ) {
+
+    return `
+    💰 如果預算在 NT$2,000 左右，
+    可以優先考慮：<br><br>
+
+    🌹 小型永生花禮盒<br>
+    💐 桌上型永生花<br>
+    🎁 永生花＋手工藝術搭配商品<br><br>
+
+    如果您願意告訴我是送給
+    「女朋友、媽媽、朋友、同事」
+    哪一類對象，
+    我可以推薦得更準確。
+    `;
+
+  }
+
+
+
+  /* 熱門 */
+
+  if (
+    q.includes("熱門") ||
+    q.includes("推薦")
+  ) {
+
+    return `
+    🌹 TIKOLAM 可以依照不同場合推薦花禮：<br><br>
+
+    ❤️ 情人／紀念日：
+    永生玫瑰系列<br><br>
+
+    🎂 生日：
+    永生花禮盒、桌花<br><br>
+
+    👩 母親節：
+    粉色、紅色與柔和色系花禮<br><br>
+
+    🎉 開幕／祝賀：
+    桌上型藝術花禮<br><br>
+
+    您可以直接告訴我：<br><br>
+
+    「送給誰＋預算多少」<br><br>
+
+    我來幫您挑選。
+    `;
+
+  }
+
+
+
+  /* 婚禮 */
+
+  if (
+    q.includes("婚禮") ||
+    q.includes("結婚")
+  ) {
+
+    return `
+    💍 婚禮或結婚紀念日，
+    很適合選擇具有保存價值的永生花。<br><br>
+
+    可以考慮：<br><br>
+
+    🌹 永生玫瑰<br>
+    💐 永生花桌花<br>
+    🎁 永生花紀念禮盒<br><br>
+
+    請問是要送給新人，
+    還是送給自己的另一半呢？
+    `;
+
+  }
+
+
+
+  /* 價格 */
+
+  if (
+    q.includes("價格") ||
+    q.includes("多少錢") ||
+    q.includes("預算")
+  ) {
+
+    return `
+    💰 沒問題，我可以依照預算幫您挑選。<br><br>
+
+    您可以直接輸入：<br><br>
+
+    「1000元以下」<br>
+    「預算2000元」<br>
+    「3000元左右送老婆」<br><br>
+
+    我會依照您的預算與送禮對象推薦。
+    `;
+
+  }
+
+
+
+  /* 永生花 */
+
+  if (
+    q.includes("永生花")
+  ) {
+
+    return `
+    🌹 永生花很適合作為生日、
+    紀念日、情人節、婚禮與重要節日禮物。<br><br>
+
+    您可以告訴我：<br><br>
+
+    ① 送給誰<br>
+    ② 什麼場合<br>
+    ③ 預算多少<br>
+    ④ 喜歡什麼顏色<br><br>
+
+    我可以幫您推薦比較適合的款式。
+    `;
+
+  }
+
+
+
+  /* 一般回答 */
+
+  return `
+  🌷 很樂意幫您挑選。<br><br>
+
+  請告訴我三個資訊：<br><br>
+
+  ① 送給誰？<br>
+  ② 什麼場合？<br>
+  ③ 預算大約多少？<br><br>
+
+  例如：<br><br>
+
+  「送老婆結婚紀念日，
+  預算3000元，
+  喜歡粉紅色。」<br><br>
+
+  我就可以進一步推薦適合的永生花或藝術商品。
+  `;
+
+}
+
+</script>
 
 
 </body>
