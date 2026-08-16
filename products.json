@@ -1,0 +1,102 @@
+[
+  {
+    "name": "粉紅永生玫瑰花禮",
+    "sku": "TIK001",
+    "price": 1680,
+    "image": "https://www.tikolam-tw.com/images/TIK001.jpg",
+    "color": ["粉紅色", "白色"],
+    "occasion": ["生日", "紀念日", "情人節"],
+    "url": "https://www.tikolam-tw.com/product/TIK001",
+    "stock": 8
+  },
+  {
+    "name": "紫色浪漫永生花禮盒",
+    "sku": "TIK002",
+    "price": 1880,
+    "image": "https://www.tikolam-tw.com/images/TIK002.jpg",
+    "color": ["紫色", "白色"],
+    "occasion": ["生日", "紀念日", "送朋友"],
+    "url": "https://www.tikolam-tw.com/product/TIK002",
+    "stock": 5
+  },
+  {
+    "name": "紅玫瑰永生花禮盒",
+    "sku": "TIK003",
+    "price": 2280,
+    "image": "https://www.tikolam-tw.com/images/TIK003.jpg",
+    "color": ["紅色", "金色"],
+    "occasion": ["情人節", "紀念日", "求婚"],
+    "url": "https://www.tikolam-tw.com/product/TIK003",
+    "stock": 3
+  },
+  {
+    "name": "香檳金永生花桌花",
+    "sku": "TIK004",
+    "price": 2580,
+    "image": "https://www.tikolam-tw.com/images/TIK004.jpg",
+    "color": ["香檳金", "米白色"],
+    "occasion": ["生日", "開幕", "新居"],
+    "url": "https://www.tikolam-tw.com/product/TIK004",
+    "stock": 6
+  },
+  {
+    "name": "藍色星空永生花玻璃罩",
+    "sku": "TIK005",
+    "price": 2980,
+    "image": "https://www.tikolam-tw.com/images/TIK005.jpg",
+    "color": ["藍色", "白色"],
+    "occasion": ["生日", "紀念日", "畢業"],
+    "url": "https://www.tikolam-tw.com/product/TIK005",
+    "stock": 4
+  },
+  {
+    "name": "母親節粉色康乃馨永生花",
+    "sku": "TIK006",
+    "price": 1980,
+    "image": "https://www.tikolam-tw.com/images/TIK006.jpg",
+    "color": ["粉紅色", "米白色"],
+    "occasion": ["母親節", "生日", "感謝"],
+    "url": "https://www.tikolam-tw.com/product/TIK006",
+    "stock": 10
+  },
+  {
+    "name": "白色典雅永生花藝術禮盒",
+    "sku": "TIK007",
+    "price": 2380,
+    "image": "https://www.tikolam-tw.com/images/TIK007.jpg",
+    "color": ["白色", "米色"],
+    "occasion": ["婚禮", "新居", "生日"],
+    "url": "https://www.tikolam-tw.com/product/TIK007",
+    "stock": 7
+  },
+  {
+    "name": "迷你永生花玻璃瓶",
+    "sku": "TIK008",
+    "price": 880,
+    "image": "https://www.tikolam-tw.com/images/TIK008.jpg",
+    "color": ["粉紅色", "紫色", "黃色"],
+    "occasion": ["生日", "送朋友", "畢業"],
+    "url": "https://www.tikolam-tw.com/product/TIK008",
+    "stock": 15
+  },
+  {
+    "name": "手工藝術永生花吊飾",
+    "sku": "TIK009",
+    "price": 1280,
+    "image": "https://www.tikolam-tw.com/images/TIK009.jpg",
+    "color": ["粉紅色", "紫色", "白色"],
+    "occasion": ["生日", "送朋友", "紀念日"],
+    "url": "https://www.tikolam-tw.com/product/TIK009",
+    "stock": 12
+  },
+  {
+    "name": "豪華紅玫瑰永生花藝術禮盒",
+    "sku": "TIK010",
+    "price": 3680,
+    "image": "https://www.tikolam-tw.com/images/TIK010.jpg",
+    "color": ["紅色", "黑色", "金色"],
+    "occasion": ["情人節", "求婚", "結婚紀念日"],
+    "url": "https://www.tikolam-tw.com/product/TIK010",
+    "stock": 2
+  }
+]
