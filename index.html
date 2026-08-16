@@ -44,7 +44,6 @@
       color: #ffffff;
     }
 
-
     /* =========================
        Main Content
     ========================= */
@@ -65,7 +64,6 @@
     .card h2 {
       margin-top: 0;
     }
-
 
     /* =========================
        AI Chat Button
@@ -98,7 +96,6 @@
       transform: scale(1.05);
     }
 
-
     /* =========================
        Chat Window
     ========================= */
@@ -127,7 +124,6 @@
       z-index: 9999;
     }
 
-
     /* =========================
        Chat Header
     ========================= */
@@ -149,7 +145,6 @@
       color: #dddddd;
       margin-top: 5px;
     }
-
 
     /* =========================
        Messages
@@ -195,7 +190,6 @@
       margin-left: auto;
     }
 
-
     /* =========================
        Quick Buttons
     ========================= */
@@ -227,7 +221,6 @@
     .tik-quick-buttons button:hover {
       background: #f2f2f2;
     }
-
 
     /* =========================
        Input Area
@@ -271,6 +264,10 @@
       cursor: pointer;
     }
 
+    #tik-send:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
 
     /* =========================
        Mobile
@@ -304,11 +301,9 @@
         right: 15px;
         bottom: 15px;
       }
-
     }
 
   </style>
-
 </head>
 
 
@@ -321,14 +316,13 @@
 
 <header>
 
-  <h1>TIKOLAM ART</h1>
+  <h1>TIKOLAM</h1>
 
   <p>
     永生花・藝術花禮・手工藝術商品
   </p>
 
 </header>
-
 
 
 <!-- ==================================== -->
@@ -358,7 +352,6 @@
 </main>
 
 
-
 <!-- ==================================== -->
 <!-- TIKOLAM AI Chat Widget -->
 <!-- ==================================== -->
@@ -386,11 +379,9 @@
   </div>
 
 
-
   <!-- Messages -->
 
   <div id="tik-messages">
-
 
     <div class="tik-message tik-ai-message">
 
@@ -414,9 +405,7 @@
 
     </div>
 
-
   </div>
-
 
 
   <!-- 快速選項 -->
@@ -442,7 +431,6 @@
   </div>
 
 
-
   <!-- 輸入區 -->
 
   <div class="tik-input-area">
@@ -463,8 +451,15 @@
 </div>
 
 
-
 <script>
+
+/* ====================================
+   Cloudflare Worker URL
+==================================== */
+
+const TIKOLAM_AI_API =
+  "https://tikolam-ai.hubert893204.workers.dev/";
+
 
 /* ====================================
    取得 HTML 元件
@@ -484,7 +479,6 @@ document.getElementById("tik-send");
 
 const tikMessages =
 document.getElementById("tik-messages");
-
 
 
 /* ====================================
@@ -508,7 +502,6 @@ tikButton.onclick = function() {
 };
 
 
-
 /* ====================================
    快速問題
 ==================================== */
@@ -522,7 +515,6 @@ function tikQuick(question) {
 }
 
 
-
 /* ====================================
    加入對話訊息
 ==================================== */
@@ -532,9 +524,7 @@ function tikAddMessage(text, type) {
   const div =
   document.createElement("div");
 
-
   div.classList.add("tik-message");
-
 
   if (type === "user") {
 
@@ -546,12 +536,14 @@ function tikAddMessage(text, type) {
 
   }
 
+  /*
+    AI 回覆使用 textContent，
+    避免外部內容直接插入 HTML。
+  */
 
-  div.innerHTML = text;
-
+  div.textContent = text;
 
   tikMessages.appendChild(div);
-
 
   tikMessages.scrollTop =
   tikMessages.scrollHeight;
@@ -559,62 +551,158 @@ function tikAddMessage(text, type) {
 }
 
 
-
 /* ====================================
-   發送訊息
+   發送訊息到 Gemini / Cloudflare Worker
 ==================================== */
 
-function tikSendMessage() {
+async function tikSendMessage() {
 
   const text =
   tikInput.value.trim();
-
 
   if (!text) {
     return;
   }
 
 
-  tikAddMessage(text, "user");
+  /* 顯示客戶訊息 */
 
+  tikAddMessage(text, "user");
 
   tikInput.value = "";
 
 
+  /* 暫時避免重複點擊 */
+
+  tikSend.disabled = true;
+
+
+  /* 顯示讀取中 */
+
   const loading =
   document.createElement("div");
-
 
   loading.className =
   "tik-message tik-ai-message";
 
-
-  loading.innerHTML =
-  "🌹 正在幫您挑選適合的商品...";
-
+  loading.textContent =
+  "🌹 TIKOLAM AI 正在幫您挑選...";
 
   tikMessages.appendChild(loading);
-
 
   tikMessages.scrollTop =
   tikMessages.scrollHeight;
 
 
-  setTimeout(function() {
+  try {
+
+    const response =
+      await fetch(
+        TIKOLAM_AI_API,
+        {
+          method: "POST",
+
+          headers: {
+            "Content-Type": "application/json"
+          },
+
+          body: JSON.stringify({
+            message: text
+          })
+        }
+      );
+
+
+    let data;
+
+    try {
+
+      data =
+        await response.json();
+
+    } catch {
+
+      throw new Error(
+        "伺服器沒有回傳正確的 JSON"
+      );
+
+    }
+
 
     loading.remove();
 
 
-    const reply =
-    tikDemoAI(text);
+    /* Worker 或 Gemini 發生錯誤 */
+
+    if (!response.ok) {
+
+      console.error(
+        "TIKOLAM AI API Error:",
+        data
+      );
+
+      tikAddMessage(
+        "目前 AI 客服暫時無法回答，請稍後再試。",
+        "ai"
+      );
+
+      return;
+    }
 
 
-    tikAddMessage(reply, "ai");
+    /* 沒有 reply */
 
-  }, 600);
+    if (!data.reply) {
+
+      console.error(
+        "No reply returned:",
+        data
+      );
+
+      tikAddMessage(
+        "目前沒有收到 AI 的回答，請再試一次。",
+        "ai"
+      );
+
+      return;
+    }
+
+
+    /* 顯示 Gemini 回答 */
+
+    tikAddMessage(
+      data.reply,
+      "ai"
+    );
+
+
+  } catch (error) {
+
+    if (loading.isConnected) {
+      loading.remove();
+    }
+
+
+    console.error(
+      "TIKOLAM AI connection error:",
+      error
+    );
+
+
+    tikAddMessage(
+      "目前 AI 客服連線失敗，請稍後再試。",
+      "ai"
+    );
+
+  } finally {
+
+    tikSend.disabled = false;
+
+    tikInput.focus();
+
+  }
 
 }
-
 
 
 /* ====================================
@@ -625,7 +713,10 @@ tikInput.addEventListener(
   "keydown",
   function(event) {
 
-    if (event.key === "Enter") {
+    if (
+      event.key === "Enter" &&
+      !tikSend.disabled
+    ) {
 
       tikSendMessage();
 
@@ -635,265 +726,15 @@ tikInput.addEventListener(
 );
 
 
-tikSend.onclick =
-tikSendMessage;
-
-
-
 /* ====================================
-   Demo AI 客服
+   送出按鈕
 ==================================== */
 
-function tikDemoAI(question) {
-
-  const q =
-  question.toLowerCase();
-
-
-
-  /* -------- 生日 -------- */
-
-  if (
-    q.includes("生日")
-  ) {
-
-    return `
-    🎂 如果是生日送禮，
-    我推薦具有紀念價值的永生花或藝術花禮。<br><br>
-
-    可以依照您的預算挑選：<br><br>
-
-    🌹 NT$1,000 以下<br>
-    🌹 NT$1,000～2,000<br>
-    🌹 NT$2,000～3,000<br>
-    🌹 NT$3,000 以上<br><br>
-
-    請問您的預算大約是多少呢？
-    `;
-
-  }
-
-
-
-  /* -------- 女朋友 / 老婆 / 情人 -------- */
-
-  if (
-    q.includes("女朋友") ||
-    q.includes("老婆") ||
-    q.includes("情人") ||
-    q.includes("紀念日")
-  ) {
-
-    return `
-    ❤️ 如果是送給另一半，
-    我會比較推薦浪漫型的永生花禮。<br><br>
-
-    例如：<br><br>
-
-    🌹 永生玫瑰花禮盒<br>
-    💐 粉色系藝術花禮<br>
-    🌹 永生花設計商品<br><br>
-
-    如果您告訴我：<br><br>
-
-    ① 預算<br>
-    ② 喜歡的顏色<br>
-    ③ 生日、紀念日或其他場合<br><br>
-
-    我可以再幫您縮小選擇。
-    `;
-
-  }
-
-
-
-  /* -------- 2000元 -------- */
-
-  if (
-    q.includes("2000") ||
-    q.includes("兩千")
-  ) {
-
-    return `
-    💰 如果預算在 NT$2,000 左右，
-    可以優先考慮：<br><br>
-
-    🌹 小型永生花禮<br>
-    💐 桌上型藝術花禮<br>
-    🎁 永生花＋手工藝術搭配商品<br><br>
-
-    如果您願意告訴我是送給
-    「女朋友、媽媽、朋友、同事」
-    哪一類對象，
-    我可以推薦得更準確。
-    `;
-
-  }
-
-
-
-  /* -------- 熱門 / 推薦 -------- */
-
-  if (
-    q.includes("熱門") ||
-    q.includes("推薦")
-  ) {
-
-    return `
-    🌹 TIKOLAM 可以依照不同場合推薦商品：<br><br>
-
-    ❤️ 情人／紀念日：<br>
-    永生玫瑰、浪漫藝術花禮<br><br>
-
-    🎂 生日：<br>
-    永生花禮盒、藝術桌花<br><br>
-
-    👩 母親節：<br>
-    粉色、紅色與柔和色系花禮<br><br>
-
-    🎉 開幕／祝賀：<br>
-    桌上型藝術花禮<br><br>
-
-    🎨 特別送禮：<br>
-    手工藝術商品<br><br>
-
-    您可以直接告訴我：<br><br>
-
-    <b>「送給誰＋預算多少」</b><br><br>
-
-    我來幫您挑選。
-    `;
-
-  }
-
-
-
-  /* -------- 婚禮 -------- */
-
-  if (
-    q.includes("婚禮") ||
-    q.includes("結婚")
-  ) {
-
-    return `
-    💍 婚禮或結婚紀念日，
-    很適合選擇具有長時間保存價值的永生花。<br><br>
-
-    可以考慮：<br><br>
-
-    🌹 永生玫瑰<br>
-    💐 永生藝術花禮<br>
-    🎁 永生花紀念禮盒<br><br>
-
-    請問是要送給新人，
-    還是送給自己的另一半呢？
-    `;
-
-  }
-
-
-
-  /* -------- 價格 -------- */
-
-  if (
-    q.includes("價格") ||
-    q.includes("多少錢") ||
-    q.includes("預算")
-  ) {
-
-    return `
-    💰 沒問題，我可以依照預算幫您挑選。<br><br>
-
-    您可以直接輸入：<br><br>
-
-    「1000元以下」<br>
-    「預算2000元」<br>
-    「3000元左右送老婆」<br><br>
-
-    我會依照您的預算與送禮對象推薦。
-    `;
-
-  }
-
-
-
-  /* -------- 永生花 -------- */
-
-  if (
-    q.includes("永生花")
-  ) {
-
-    return `
-    🌹 永生花很適合作為生日、
-    紀念日、情人節、婚禮與重要節日禮物。<br><br>
-
-    您可以告訴我：<br><br>
-
-    ① 送給誰<br>
-    ② 什麼場合<br>
-    ③ 預算多少<br>
-    ④ 喜歡什麼顏色<br><br>
-
-    我可以幫您推薦比較適合的款式。
-    `;
-
-  }
-
-
-
-  /* -------- 手工藝術商品 -------- */
-
-  if (
-    q.includes("手工") ||
-    q.includes("藝術商品") ||
-    q.includes("藝術")
-  ) {
-
-    return `
-    🎨 TIKOLAM 除了永生花之外，
-    也有手工藝術與設計類商品。<br><br>
-
-    如果您告訴我：<br><br>
-
-    ① 想送給誰<br>
-    ② 預算<br>
-    ③ 喜歡花藝還是其他藝術商品<br><br>
-
-    我可以協助您挑選適合的方向。
-    `;
-
-  }
-
-
-
-  /* -------- 一般回答 -------- */
-
-  return `
-  🌷 很樂意幫您挑選。<br><br>
-
-  請告訴我三個資訊：<br><br>
-
-  ① 送給誰？<br>
-  ② 什麼場合？<br>
-  ③ 預算大約多少？<br><br>
-
-  例如：<br><br>
-
-  <b>
-  「送老婆結婚紀念日，
-  預算3000元，
-  喜歡粉紅色。」
-  </b><br><br>
-
-  我就可以進一步推薦適合的永生花、
-  藝術花禮或手工藝術商品。
-  `;
-
-}
+tikSend.onclick =
+tikSendMessage;
 
 </script>
 
 
 </body>
-
 </html>
