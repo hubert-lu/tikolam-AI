@@ -1,0 +1,1821 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0, maximum-scale=1.0, viewport-fit=cover"
+  >
+
+  <title>TIKOLAM 永生花藝術商品</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html,
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: Arial, "Microsoft JhengHei", sans-serif;
+      background: #f7f5f2;
+      color: #222;
+    }
+
+    body {
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    /*
+    =========================================
+       HEADER
+    =========================================
+    */
+
+    header {
+      background: #000;
+      color: white;
+      text-align: center;
+      padding: 58px 20px 54px;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 42px;
+      letter-spacing: 6px;
+      font-weight: 700;
+    }
+
+    header p {
+      margin: 13px 0 0;
+      font-size: 16px;
+      line-height: 1.6;
+      letter-spacing: 1px;
+      color: #ddd;
+    }
+
+    /*
+    =========================================
+       MAIN
+    =========================================
+    */
+
+    main {
+      width: 100%;
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 34px 18px 120px;
+    }
+
+    .main-card {
+      max-width: 900px;
+      margin: 0 auto;
+      background: white;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 5px 22px rgba(0,0,0,.07);
+    }
+
+    .main-card h2 {
+      margin: 0 0 12px;
+      line-height: 1.45;
+      font-size: 27px;
+    }
+
+    .main-card p {
+      margin: 8px 0;
+      line-height: 1.85;
+      color: #555;
+    }
+
+    /*
+    =========================================
+       PRODUCT SHOWCASE
+    =========================================
+    */
+
+    .shop-section {
+      margin-top: 54px;
+    }
+
+    .shop-heading {
+      text-align: center;
+      margin-bottom: 34px;
+    }
+
+    .shop-eyebrow {
+      margin-bottom: 10px;
+      font-size: 12px;
+      letter-spacing: 3px;
+      color: #999;
+    }
+
+    .shop-heading h2 {
+      margin: 0 0 13px;
+      font-size: 32px;
+      line-height: 1.35;
+      letter-spacing: 2px;
+    }
+
+    .shop-heading p {
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: 15px;
+      line-height: 1.9;
+      color: #777;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 26px;
+    }
+
+    .store-card {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #ece9e5;
+      border-radius: 20px;
+      box-shadow: 0 5px 22px rgba(0,0,0,.06);
+      transition: transform .28s ease, box-shadow .28s ease;
+    }
+
+    .store-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 34px rgba(0,0,0,.11);
+    }
+
+    .store-image-wrap {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      overflow: hidden;
+      background: #eeeae5;
+    }
+
+    .store-image {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .4s ease;
+    }
+
+    .store-card:hover .store-image {
+      transform: scale(1.035);
+    }
+
+    .store-image-placeholder {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 100%;
+      padding: 30px;
+      text-align: center;
+      color: #999;
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    .store-category {
+      position: absolute;
+      top: 14px;
+      left: 14px;
+      max-width: calc(100% - 28px);
+      padding: 7px 11px;
+      overflow: hidden;
+      border-radius: 999px;
+      background: rgba(0,0,0,.72);
+      color: white;
+      font-size: 11px;
+      letter-spacing: .8px;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      backdrop-filter: blur(5px);
+    }
+
+    .store-body {
+      display: flex;
+      flex: 1;
+      flex-direction: column;
+      padding: 20px 20px 22px;
+    }
+
+    .store-sku {
+      margin-bottom: 6px;
+      font-size: 11px;
+      letter-spacing: 1.4px;
+      color: #aaa;
+    }
+
+    .store-name {
+      margin: 0 0 9px;
+      font-size: 19px;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .store-price {
+      margin-bottom: 13px;
+      font-size: 21px;
+      line-height: 1.3;
+      font-weight: 700;
+    }
+
+    .store-description {
+      margin-bottom: 15px;
+      color: #6d6d6d;
+      font-size: 13px;
+      line-height: 1.75;
+    }
+
+    .store-meta {
+      margin: 1px 0 15px;
+      font-size: 12px;
+      line-height: 1.7;
+      color: #858585;
+    }
+
+    .store-meta div + div {
+      margin-top: 3px;
+    }
+
+    .store-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-top: auto;
+      padding-top: 15px;
+      border-top: 1px solid #eee;
+    }
+
+    .store-stock {
+      font-size: 12px;
+      color: #777;
+    }
+
+    .store-stock.out {
+      color: #aaa;
+    }
+
+    .store-link {
+      flex-shrink: 0;
+      color: #111;
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    .store-link:hover {
+      opacity: .6;
+    }
+
+    .product-loading,
+    .product-error {
+      grid-column: 1 / -1;
+      padding: 52px 18px;
+      text-align: center;
+      color: #888;
+      background: rgba(255,255,255,.68);
+      border-radius: 18px;
+    }
+
+    .product-error {
+      color: #8a5d5d;
+    }
+
+    /*
+    =========================================
+       FLOAT BUTTON
+    =========================================
+    */
+
+    #tikolam-ai-btn {
+      position: fixed;
+      right: 18px;
+      bottom: calc(18px + env(safe-area-inset-bottom));
+      width: 72px;
+      height: 72px;
+      border: none;
+      border-radius: 50%;
+      background: #000;
+      color: white;
+      font-size: 30px;
+      cursor: pointer;
+      box-shadow: 0 6px 24px rgba(0,0,0,.28);
+      z-index: 9998;
+    }
+
+    /*
+    =========================================
+       CHAT
+    =========================================
+    */
+
+    #tikolam-chat {
+      position: fixed;
+      right: 18px;
+      bottom: 102px;
+      width: 420px;
+      height: min(700px, calc(100vh - 130px));
+      background: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 40px rgba(0,0,0,.28);
+      display: none;
+      flex-direction: column;
+      overflow: hidden;
+      z-index: 9999;
+    }
+
+    /*
+    =========================================
+       CHAT HEADER
+    =========================================
+    */
+
+    .tik-header {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      min-height: 68px;
+      padding: 12px 14px 12px 18px;
+      background: #000;
+      color: white;
+    }
+
+    .tik-header-title {
+      font-size: 17px;
+      font-weight: 700;
+    }
+
+    .tik-status {
+      margin-top: 4px;
+      font-size: 12px;
+      color: #ccc;
+    }
+
+    #tik-close {
+      width: 44px;
+      height: 44px;
+      flex-shrink: 0;
+      border: none;
+      border-radius: 50%;
+      background: rgba(255,255,255,.12);
+      color: white;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    /*
+    =========================================
+       MESSAGES
+    =========================================
+    */
+
+    #tik-messages {
+      flex: 1;
+      min-height: 0;
+      overflow-y: auto;
+      overscroll-behavior: contain;
+      padding: 16px;
+      background: #f7f5f2;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .tik-message {
+      width: fit-content;
+      max-width: 88%;
+      margin-bottom: 12px;
+      padding: 12px 15px;
+      border-radius: 16px;
+      font-size: 15px;
+      line-height: 1.65;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
+    }
+
+    .tik-ai-message {
+      margin-right: auto;
+      background: white;
+      border: 1px solid #e4e4e4;
+    }
+
+    .tik-user-message {
+      margin-left: auto;
+      background: #000;
+      color: white;
+    }
+
+    /*
+    =========================================
+       CHAT PRODUCT CARD
+    =========================================
+    */
+
+    .tik-product-card {
+      width: 100%;
+      margin: 0 0 16px;
+      overflow: hidden;
+      background: white;
+      border: 1px solid #ddd;
+      border-radius: 18px;
+      box-shadow: 0 3px 12px rgba(0,0,0,.07);
+    }
+
+    .tik-product-image {
+      display: block;
+      width: 100%;
+      height: 230px;
+      object-fit: cover;
+      background: #eee;
+    }
+
+    .tik-product-body {
+      padding: 16px;
+    }
+
+    .tik-product-name {
+      margin-bottom: 8px;
+      font-size: 18px;
+      line-height: 1.45;
+      font-weight: 700;
+    }
+
+    .tik-product-price {
+      margin-bottom: 12px;
+      font-size: 22px;
+      font-weight: 700;
+    }
+
+    .tik-product-detail {
+      margin: 6px 0;
+      color: #555;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .tik-product-reason {
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid #eee;
+      font-size: 14px;
+      line-height: 1.65;
+    }
+
+    .tik-product-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      min-height: 50px;
+      margin-top: 14px;
+      padding: 12px 16px;
+      border-radius: 12px;
+      background: #000;
+      color: white;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 700;
+    }
+
+    /*
+    =========================================
+       QUICK BUTTONS
+    =========================================
+    */
+
+    .tik-quick-area {
+      flex-shrink: 0;
+      padding: 9px 10px;
+      background: white;
+      border-top: 1px solid #eee;
+      overflow-x: auto;
+      white-space: nowrap;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .tik-quick-area button {
+      min-height: 42px;
+      margin-right: 5px;
+      padding: 8px 13px;
+      border: 1px solid #ccc;
+      border-radius: 22px;
+      background: white;
+      font-size: 14px;
+      cursor: pointer;
+    }
+
+    /*
+    =========================================
+       INPUT AREA
+    =========================================
+    */
+
+    .tik-input-area {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 10px calc(10px + env(safe-area-inset-bottom));
+      background: white;
+      border-top: 1px solid #ddd;
+    }
+
+    #tik-input {
+      min-width: 0;
+      flex: 1;
+      height: 48px;
+      padding: 0 16px;
+      border: 1px solid #ccc;
+      border-radius: 24px;
+      font-size: 16px;
+      outline: none;
+    }
+
+    #tik-input:focus {
+      border-color: #222;
+    }
+
+    #tik-send {
+      width: 58px;
+      height: 48px;
+      flex-shrink: 0;
+      border: none;
+      border-radius: 24px;
+      background: #000;
+      color: white;
+      font-size: 15px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    #tik-send:disabled {
+      opacity: .45;
+    }
+
+    /*
+    =========================================
+       TABLET
+    =========================================
+    */
+
+    @media (max-width: 900px) {
+      .product-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 20px;
+      }
+    }
+
+    /*
+    =========================================
+       MOBILE
+    =========================================
+    */
+
+    @media (max-width: 600px) {
+      body.chat-open {
+        overflow: hidden;
+      }
+
+      header {
+        padding: 40px 16px 38px;
+      }
+
+      header h1 {
+        font-size: 31px;
+        letter-spacing: 4px;
+      }
+
+      header p {
+        font-size: 15px;
+      }
+
+      main {
+        padding: 22px 14px 110px;
+      }
+
+      .main-card {
+        padding: 22px 18px;
+      }
+
+      .main-card h2 {
+        font-size: 23px;
+      }
+
+      .shop-section {
+        margin-top: 42px;
+      }
+
+      .shop-heading {
+        margin-bottom: 26px;
+      }
+
+      .shop-heading h2 {
+        font-size: 27px;
+      }
+
+      .shop-heading p {
+        font-size: 14px;
+      }
+
+      .product-grid {
+        grid-template-columns: 1fr;
+        gap: 22px;
+      }
+
+      .store-card {
+        border-radius: 18px;
+      }
+
+      .store-body {
+        padding: 18px 18px 20px;
+      }
+
+      .store-description {
+        min-height: auto;
+      }
+
+      #tikolam-ai-btn {
+        width: 68px;
+        height: 68px;
+        right: 14px;
+        bottom: calc(14px + env(safe-area-inset-bottom));
+      }
+
+      #tikolam-chat {
+        inset: 0;
+        width: 100%;
+        height: 100dvh;
+        max-height: none;
+        border-radius: 0;
+      }
+
+      .tik-header {
+        padding-top: calc(10px + env(safe-area-inset-top));
+      }
+
+      #tik-messages {
+        padding: 14px;
+      }
+
+      .tik-message {
+        max-width: 92%;
+        font-size: 15px;
+      }
+
+      .tik-product-image {
+        height: min(56vw, 280px);
+      }
+
+      .tik-product-link {
+        min-height: 54px;
+        font-size: 17px;
+      }
+
+      .tik-quick-area button {
+        min-height: 44px;
+      }
+
+      #tik-input {
+        height: 52px;
+      }
+
+      #tik-send {
+        height: 52px;
+        width: 62px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header>
+    <h1>TIKOLAM</h1>
+    <p>永生花・藝術花禮・手工藝術商品</p>
+  </header>
+
+  <main>
+    <div class="main-card">
+      <h2>為重要的人，挑一份特別的禮物</h2>
+
+      <p>
+        告訴 AI 花禮顧問送禮對象、場合、預算與喜歡的顏色，
+        我們會從目前有庫存的 TIKOLAM 商品中為您挑選。
+      </p>
+
+      <p>
+        您也可以直接瀏覽下方商品；需要推薦時，點擊右下角 💬 即可開始。
+      </p>
+    </div>
+
+    <section class="shop-section" aria-labelledby="shop-title">
+      <div class="shop-heading">
+        <div class="shop-eyebrow">TIKOLAM ART COLLECTION</div>
+        <h2 id="shop-title">精選藝術花禮</h2>
+        <p>
+          將花的美好凝結成藝術，
+          為每一個重要時刻留下值得收藏的心意。
+        </p>
+      </div>
+
+      <div id="tik-product-grid" class="product-grid">
+        <div class="product-loading">商品載入中...</div>
+      </div>
+    </section>
+  </main>
+
+  <button
+    id="tikolam-ai-btn"
+    aria-label="開啟 AI 客服"
+    type="button"
+  >
+    💬
+  </button>
+
+  <div
+    id="tikolam-chat"
+    role="dialog"
+    aria-label="TIKOLAM AI 花禮顧問"
+  >
+    <div class="tik-header">
+      <div>
+        <div class="tik-header-title">
+          🌹 TIKOLAM AI 花禮顧問
+        </div>
+
+        <div
+          class="tik-status"
+          id="tik-status"
+        >
+          ● AI 客服在線
+        </div>
+      </div>
+
+      <button
+        id="tik-close"
+        aria-label="關閉客服"
+        type="button"
+      >
+        ×
+      </button>
+    </div>
+
+    <div id="tik-messages">
+      <div class="tik-message tik-ai-message">
+您好 👋
+
+我是 TIKOLAM AI 花禮顧問。
+
+您可以告訴我：
+
+① 送給誰
+② 什麼場合
+③ 預算
+④ 喜歡什麼顏色
+
+例如：
+「送女性朋友生日，預算2000元，喜歡紫色」
+
+我會從目前有庫存的商品中為您挑選。
+      </div>
+    </div>
+
+    <div class="tik-quick-area">
+      <button
+        type="button"
+        onclick="tikQuick('我要送女性朋友生日禮物，預算2000元，喜歡紫色')"
+      >
+        💜 紫色生日禮
+      </button>
+
+      <button
+        type="button"
+        onclick="tikQuick('我要送女朋友紀念日禮物，預算3000元，喜歡紅色')"
+      >
+        ❤️ 紀念日
+      </button>
+
+      <button
+        type="button"
+        onclick="tikQuick('我要找2000元以下的永生花')"
+      >
+        💰 2000以下
+      </button>
+
+      <button
+        type="button"
+        onclick="tikQuick('推薦目前有庫存的商品')"
+      >
+        🌹 推薦商品
+      </button>
+    </div>
+
+    <div class="tik-input-area">
+      <input
+        id="tik-input"
+        type="text"
+        maxlength="1000"
+        autocomplete="off"
+        placeholder="例如：送媽媽，預算2500元..."
+      >
+
+      <button
+        id="tik-send"
+        type="button"
+      >
+        送出
+      </button>
+    </div>
+  </div>
+
+  <script>
+    /*
+    =========================================
+       SETTINGS
+    =========================================
+    */
+
+    const TIKOLAM_AI_API =
+      "https://tikolam-ai.hubert893204.workers.dev/";
+
+    const TIKOLAM_PRODUCTS_URL =
+      "./products.json";
+
+    /*
+    =========================================
+       HELPERS
+    =========================================
+    */
+
+    function tikArrayText(value) {
+      if (Array.isArray(value)) {
+        return value.join("・");
+      }
+
+      return value || "";
+    }
+
+    function tikMoney(value) {
+      const number = Number(value);
+
+      if (Number.isNaN(number)) {
+        return value || "";
+      }
+
+      return number.toLocaleString("zh-TW");
+    }
+
+    function tikSafeText(value) {
+      if (
+        value === undefined ||
+        value === null
+      ) {
+        return "";
+      }
+
+      return String(value);
+    }
+
+    /*
+    =========================================
+       HOMEPAGE PRODUCTS
+    =========================================
+    */
+
+    async function loadTikolamProducts() {
+      const grid =
+        document.getElementById(
+          "tik-product-grid"
+        );
+
+      if (!grid) {
+        return;
+      }
+
+      try {
+        const response =
+          await fetch(
+            TIKOLAM_PRODUCTS_URL,
+            {
+              cache: "no-store"
+            }
+          );
+
+        if (!response.ok) {
+          throw new Error(
+            "products.json loading error"
+          );
+        }
+
+        const data =
+          await response.json();
+
+        const products =
+          Array.isArray(data)
+            ? data
+            : Array.isArray(data.products)
+              ? data.products
+              : [];
+
+        if (products.length === 0) {
+          throw new Error(
+            "No products found"
+          );
+        }
+
+        grid.innerHTML = "";
+
+        products.forEach(product => {
+          grid.appendChild(
+            createStoreProductCard(product)
+          );
+        });
+
+      } catch (error) {
+        console.error(
+          "Homepage product loading error:",
+          error
+        );
+
+        grid.innerHTML =
+          '<div class="product-error">' +
+          '商品資料暫時無法載入。請確認 products.json 已與 index.html 放在同一個 GitHub 專案根目錄。' +
+          '</div>';
+      }
+    }
+
+    function createStoreProductCard(product) {
+      const card =
+        document.createElement("article");
+
+      card.className =
+        "store-card";
+
+      /*
+         Image area
+      */
+
+      const imageWrap =
+        document.createElement("div");
+
+      imageWrap.className =
+        "store-image-wrap";
+
+      if (product.image) {
+        const img =
+          document.createElement("img");
+
+        img.className =
+          "store-image";
+
+        img.src =
+          product.image;
+
+        img.alt =
+          product.name || "TIKOLAM 商品";
+
+        img.loading =
+          "lazy";
+
+        img.onerror =
+          function() {
+            this.remove();
+
+            const placeholder =
+              document.createElement("div");
+
+            placeholder.className =
+              "store-image-placeholder";
+
+            placeholder.textContent =
+              "商品圖片暫時無法顯示";
+
+            imageWrap.appendChild(
+              placeholder
+            );
+          };
+
+        imageWrap.appendChild(
+          img
+        );
+
+      } else {
+        const placeholder =
+          document.createElement("div");
+
+        placeholder.className =
+          "store-image-placeholder";
+
+        placeholder.textContent =
+          "TIKOLAM ART";
+
+        imageWrap.appendChild(
+          placeholder
+        );
+      }
+
+      const categoryText =
+        product.category ||
+        tikArrayText(product.occasion) ||
+        "TIKOLAM ART";
+
+      if (categoryText) {
+        const category =
+          document.createElement("div");
+
+        category.className =
+          "store-category";
+
+        category.textContent =
+          categoryText;
+
+        imageWrap.appendChild(
+          category
+        );
+      }
+
+      card.appendChild(
+        imageWrap
+      );
+
+      /*
+         Body
+      */
+
+      const body =
+        document.createElement("div");
+
+      body.className =
+        "store-body";
+
+      if (product.sku) {
+        const sku =
+          document.createElement("div");
+
+        sku.className =
+          "store-sku";
+
+        sku.textContent =
+          product.sku;
+
+        body.appendChild(
+          sku
+        );
+      }
+
+      const name =
+        document.createElement("h3");
+
+      name.className =
+        "store-name";
+
+      name.textContent =
+        product.name || "TIKOLAM 藝術花禮";
+
+      body.appendChild(
+        name
+      );
+
+      if (
+        product.price !== undefined &&
+        product.price !== null &&
+        product.price !== ""
+      ) {
+        const price =
+          document.createElement("div");
+
+        price.className =
+          "store-price";
+
+        price.textContent =
+          "NT$ " +
+          tikMoney(product.price);
+
+        body.appendChild(
+          price
+        );
+      }
+
+      const descriptionText =
+        product.description ||
+        product.explanation ||
+        "";
+
+      if (descriptionText) {
+        const description =
+          document.createElement("div");
+
+        description.className =
+          "store-description";
+
+        description.textContent =
+          descriptionText;
+
+        body.appendChild(
+          description
+        );
+      }
+
+      const colorText =
+        tikArrayText(
+          product.color
+        );
+
+      const occasionText =
+        tikArrayText(
+          product.occasion
+        );
+
+      if (
+        colorText ||
+        occasionText
+      ) {
+        const meta =
+          document.createElement("div");
+
+        meta.className =
+          "store-meta";
+
+        if (colorText) {
+          const row =
+            document.createElement("div");
+
+          row.textContent =
+            "色系｜" + colorText;
+
+          meta.appendChild(
+            row
+          );
+        }
+
+        if (occasionText) {
+          const row =
+            document.createElement("div");
+
+          row.textContent =
+            "場合｜" + occasionText;
+
+          meta.appendChild(
+            row
+          );
+        }
+
+        body.appendChild(
+          meta
+        );
+      }
+
+      const footer =
+        document.createElement("div");
+
+      footer.className =
+        "store-footer";
+
+      const stock =
+        document.createElement("span");
+
+      stock.className =
+        "store-stock";
+
+      const stockNumber =
+        Number(product.stock);
+
+      if (
+        product.stock === undefined ||
+        product.stock === null ||
+        product.stock === ""
+      ) {
+        stock.textContent =
+          "歡迎詢問庫存";
+
+      } else if (
+        !Number.isNaN(stockNumber) &&
+        stockNumber <= 0
+      ) {
+        stock.textContent =
+          "目前缺貨";
+
+        stock.classList.add(
+          "out"
+        );
+
+      } else {
+        stock.textContent =
+          "現貨 " +
+          tikSafeText(product.stock) +
+          " 件";
+      }
+
+      footer.appendChild(
+        stock
+      );
+
+      if (product.url) {
+        const link =
+          document.createElement("a");
+
+        link.className =
+          "store-link";
+
+        link.href =
+          product.url;
+
+        link.target =
+          "_blank";
+
+        link.rel =
+          "noopener noreferrer";
+
+        link.textContent =
+          "查看商品 →";
+
+        footer.appendChild(
+          link
+        );
+      }
+
+      body.appendChild(
+        footer
+      );
+
+      card.appendChild(
+        body
+      );
+
+      return card;
+    }
+
+    /*
+    =========================================
+       CHAT ELEMENTS
+    =========================================
+    */
+
+    const tikButton =
+      document.getElementById(
+        "tikolam-ai-btn"
+      );
+
+    const tikChat =
+      document.getElementById(
+        "tikolam-chat"
+      );
+
+    const tikClose =
+      document.getElementById(
+        "tik-close"
+      );
+
+    const tikInput =
+      document.getElementById(
+        "tik-input"
+      );
+
+    const tikSend =
+      document.getElementById(
+        "tik-send"
+      );
+
+    const tikMessages =
+      document.getElementById(
+        "tik-messages"
+      );
+
+    const tikStatus =
+      document.getElementById(
+        "tik-status"
+      );
+
+    /*
+    =========================================
+       OPEN / CLOSE
+    =========================================
+    */
+
+    function tikOpenChat() {
+      tikChat.style.display =
+        "flex";
+
+      document.body.classList.add(
+        "chat-open"
+      );
+
+      setTimeout(
+        () => {
+          tikInput.focus();
+        },
+        100
+      );
+    }
+
+    function tikCloseChat() {
+      tikChat.style.display =
+        "none";
+
+      document.body.classList.remove(
+        "chat-open"
+      );
+    }
+
+    tikButton.onclick =
+      tikOpenChat;
+
+    tikClose.onclick =
+      tikCloseChat;
+
+    /*
+    =========================================
+       QUICK BUTTON
+    =========================================
+    */
+
+    function tikQuick(question) {
+      tikInput.value =
+        question;
+
+      tikSendMessage();
+    }
+
+    /*
+    =========================================
+       CHAT MESSAGE
+    =========================================
+    */
+
+    function tikAddMessage(
+      text,
+      type
+    ) {
+      const div =
+        document.createElement("div");
+
+      div.className =
+        "tik-message " +
+        (
+          type === "user"
+            ? "tik-user-message"
+            : "tik-ai-message"
+        );
+
+      div.textContent =
+        text;
+
+      tikMessages.appendChild(
+        div
+      );
+
+      tikScrollBottom();
+    }
+
+    /*
+    =========================================
+       CHAT PRODUCT CARD
+    =========================================
+    */
+
+    function tikAddProductCard(
+      product
+    ) {
+      const card =
+        document.createElement("div");
+
+      card.className =
+        "tik-product-card";
+
+      if (product.image) {
+        const img =
+          document.createElement("img");
+
+        img.className =
+          "tik-product-image";
+
+        img.src =
+          product.image;
+
+        img.alt =
+          product.name || "商品";
+
+        img.loading =
+          "lazy";
+
+        img.onerror =
+          function() {
+            this.style.display =
+              "none";
+          };
+
+        card.appendChild(
+          img
+        );
+      }
+
+      const body =
+        document.createElement("div");
+
+      body.className =
+        "tik-product-body";
+
+      const name =
+        document.createElement("div");
+
+      name.className =
+        "tik-product-name";
+
+      name.textContent =
+        product.name || "TIKOLAM 商品";
+
+      body.appendChild(
+        name
+      );
+
+      if (
+        product.price !== undefined &&
+        product.price !== null &&
+        product.price !== ""
+      ) {
+        const price =
+          document.createElement("div");
+
+        price.className =
+          "tik-product-price";
+
+        price.textContent =
+          "NT$" +
+          tikMoney(product.price);
+
+        body.appendChild(
+          price
+        );
+      }
+
+      tikAddDetail(
+        body,
+        "商品編號",
+        product.sku
+      );
+
+      tikAddDetail(
+        body,
+        "顏色",
+        tikArrayText(
+          product.color
+        )
+      );
+
+      tikAddDetail(
+        body,
+        "適合場合",
+        tikArrayText(
+          product.occasion
+        )
+      );
+
+      if (
+        product.stock !== undefined &&
+        product.stock !== null &&
+        product.stock !== ""
+      ) {
+        tikAddDetail(
+          body,
+          "庫存",
+          product.stock + " 件"
+        );
+      }
+
+      if (product.explanation) {
+        const reason =
+          document.createElement("div");
+
+        reason.className =
+          "tik-product-reason";
+
+        reason.textContent =
+          "推薦原因：" +
+          product.explanation;
+
+        body.appendChild(
+          reason
+        );
+      }
+
+      if (product.url) {
+        const link =
+          document.createElement("a");
+
+        link.className =
+          "tik-product-link";
+
+        link.href =
+          product.url;
+
+        link.target =
+          "_blank";
+
+        link.rel =
+          "noopener noreferrer";
+
+        link.textContent =
+          "查看商品";
+
+        body.appendChild(
+          link
+        );
+      }
+
+      card.appendChild(
+        body
+      );
+
+      tikMessages.appendChild(
+        card
+      );
+
+      tikScrollBottom();
+    }
+
+    function tikAddDetail(
+      parent,
+      label,
+      value
+    ) {
+      if (
+        value === undefined ||
+        value === null ||
+        value === ""
+      ) {
+        return;
+      }
+
+      const div =
+        document.createElement("div");
+
+      div.className =
+        "tik-product-detail";
+
+      div.textContent =
+        `${label}：${value}`;
+
+      parent.appendChild(
+        div
+      );
+    }
+
+    /*
+    =========================================
+       SCROLL
+    =========================================
+    */
+
+    function tikScrollBottom() {
+      requestAnimationFrame(
+        () => {
+          tikMessages.scrollTop =
+            tikMessages.scrollHeight;
+        }
+      );
+    }
+
+    /*
+    =========================================
+       LOADING
+    =========================================
+    */
+
+    function tikSetLoading(
+      loading
+    ) {
+      tikSend.disabled =
+        loading;
+
+      tikInput.disabled =
+        loading;
+
+      tikStatus.textContent =
+        loading
+          ? "● 正在為您挑選..."
+          : "● AI 客服在線";
+    }
+
+    /*
+    =========================================
+       SEND MESSAGE
+    =========================================
+    */
+
+    async function tikSendMessage() {
+      const text =
+        tikInput.value.trim();
+
+      if (
+        !text ||
+        tikSend.disabled
+      ) {
+        return;
+      }
+
+      tikAddMessage(
+        text,
+        "user"
+      );
+
+      tikInput.value =
+        "";
+
+      tikSetLoading(
+        true
+      );
+
+      const loading =
+        document.createElement("div");
+
+      loading.className =
+        "tik-message tik-ai-message";
+
+      loading.textContent =
+        "🌹 正在從商品中為您挑選...";
+
+      tikMessages.appendChild(
+        loading
+      );
+
+      tikScrollBottom();
+
+      try {
+        const response =
+          await fetch(
+            TIKOLAM_AI_API,
+            {
+              method: "POST",
+              headers: {
+                "Content-Type":
+                  "application/json"
+              },
+              body: JSON.stringify(
+                {
+                  message: text
+                }
+              )
+            }
+          );
+
+        let data;
+
+        try {
+          data =
+            await response.json();
+        } catch {
+          throw new Error(
+            "Server returned invalid JSON"
+          );
+        }
+
+        if (loading.isConnected) {
+          loading.remove();
+        }
+
+        if (
+          !response.ok ||
+          !data.success
+        ) {
+          console.error(
+            "API error:",
+            data
+          );
+
+          tikAddMessage(
+            "系統暫時忙碌，請再按一次送出或稍後重新詢問。",
+            "ai"
+          );
+
+          return;
+        }
+
+        if (data.message) {
+          tikAddMessage(
+            data.message,
+            "ai"
+          );
+        }
+
+        if (
+          Array.isArray(
+            data.recommendations
+          ) &&
+          data.recommendations.length > 0
+        ) {
+          data.recommendations
+            .forEach(
+              product =>
+                tikAddProductCard(
+                  product
+                )
+            );
+
+        } else {
+          tikAddMessage(
+            "目前沒有找到符合條件且有庫存的商品。您可以調整預算、顏色或場合，我再幫您找。",
+            "ai"
+          );
+        }
+
+        if (
+          data.followUpQuestion
+        ) {
+          tikAddMessage(
+            data.followUpQuestion,
+            "ai"
+          );
+        }
+
+        console.log(
+          "AI provider:",
+          data.provider
+        );
+
+        console.log(
+          "Fallback:",
+          data.fallback
+        );
+
+      } catch(error) {
+        if (loading.isConnected) {
+          loading.remove();
+        }
+
+        console.error(
+          "Connection error:",
+          error
+        );
+
+        tikAddMessage(
+          "目前網路連線不穩定，請再試一次。",
+          "ai"
+        );
+
+      } finally {
+        tikSetLoading(
+          false
+        );
+
+        tikInput.focus();
+      }
+    }
+
+    /*
+    =========================================
+       EVENTS
+    =========================================
+    */
+
+    tikInput.addEventListener(
+      "keydown",
+      function(event) {
+        if (
+          event.key === "Enter" &&
+          !event.shiftKey
+        ) {
+          event.preventDefault();
+          tikSendMessage();
+        }
+      }
+    );
+
+    tikSend.onclick =
+      tikSendMessage;
+
+    document.addEventListener(
+      "keydown",
+      function(event) {
+        if (
+          event.key === "Escape"
+        ) {
+          tikCloseChat();
+        }
+      }
+    );
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      loadTikolamProducts
+    );
+  </script>
+</body>
+</html>
